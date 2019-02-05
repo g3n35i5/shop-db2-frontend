@@ -70,7 +70,11 @@ export class LoginComponent implements OnInit {
       const keys = sortedUsers.map(s => s.key);
       for (const _key of keys) {
         const copied = sortedUsers.find(s => s.key === _key);
-        copied.users.sort((a, b) => a.lastname.localeCompare(b.lastname));
+        if (this.sortByLastname) {
+          copied.users.sort((a, b) => a.lastname.localeCompare(b.lastname));
+        } else {
+          copied.users.sort((a, b) => a.firstname.localeCompare(b.firstname));
+        }
       }
 
       sortedUsers.sort((a, b) => (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0));
