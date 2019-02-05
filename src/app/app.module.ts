@@ -10,13 +10,14 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { SettingsComponent } from './settings/settings.component';
+import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SettingsComponent,
-    SettingsComponent
+    LoginComponent,
     PageNotFoundComponent
   ],
   imports: [

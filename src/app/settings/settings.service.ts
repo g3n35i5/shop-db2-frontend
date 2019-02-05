@@ -20,6 +20,13 @@ export class SettingsService {
         default: true
       },
       {
+        storageID: 'sortByLastname',
+        name: 'Sort users by lastname',
+        description: 'Select whether you want to sort users by their lastname.',
+        state: null,
+        default: false
+      },
+      {
         storageID: 'useDarkTheme',
         name: 'Use dark theme',
         description: 'Choose if you want to use the dark theme.',

@@ -11,6 +11,14 @@ export class DataService {
     public http: HttpClient
   ) { }
 
+  public getUsers() {
+    return this.getData('users');
+  }
+
+  public getRanks() {
+    return this.getData('ranks');
+  }
+
   private getData(route) {
     return this.makeRequest(route, null, 'GET');
   }
