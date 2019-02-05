@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span routerLink="/">shop.db</span>
+  <span class="fill-remaining-space"></span>
+</mat-toolbar>
+
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="50%" fxFlex.lt-md="100%">
+          <mat-list *ngFor="let item of settings">
+            <mat-list-item>
+              <h4 mat-line>{{ item.name }}</h4>
+              <p mat-line class="muted">{{ item.description }}</p>
+              <span class="fill-remaining-space"></span>
+              <mat-slide-toggle
+                [(ngModel)]="item.state"
+                color="accent"
+                (change)="setState(item)">
+              </mat-slide-toggle>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
