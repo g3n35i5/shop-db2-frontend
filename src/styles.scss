@@ -14,3 +14,19 @@
 body {
   margin: 0;
 }
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.muted {
+  opacity: 0.5;
+}
+
+.content {
+  height: 100vh;
+}
+
+.container {
+  margin: 1rem;
+}
