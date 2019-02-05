@@ -10,7 +10,8 @@
 <div class="container">
   <mat-card>
     <mat-card-content>
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <app-loading *ngIf="loading"></app-loading>
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!loading">
         <div fxFlex="50%" fxFlex.lt-md="100%">
           <mat-list *ngFor="let group of sortedUsers">
             <h1 class="mat-display-1 mb-2" [id]="group.key">{{group.key}}</h1>

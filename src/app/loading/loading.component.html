@@ -1,0 +1,13 @@
+<div class="center-card center-text">
+  <h1 class="mat-h1">Loading</h1>
+  <mat-spinner class="center-icon"></mat-spinner>
+  <div *ngIf="showGoHomeButton">
+    <p class="mat-body-1">
+      Seems like nothing's happening anymore.
+      Would you like to return to the home page?
+    </p>
+    <button mat-flat-button color="primary" (click)="goHome()">
+      Go home
+    </button>
+  </div>
+</div>

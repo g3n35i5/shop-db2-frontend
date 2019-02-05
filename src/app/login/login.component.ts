@@ -16,6 +16,7 @@ import {Sort} from '@angular/material';
 export class LoginComponent implements OnInit {
 
   private sortByLastname: boolean;
+  private loading: boolean;
 
   private users: User[];
   private ranks: Rank[];
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   loadData(): void {
+    this.loading = true;
     const users = this.dataService.getUsers();
     const ranks = this.dataService.getRanks();
     forkJoin([users, ranks]).subscribe(results => {
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
 
   processingData(): void {
     this.sortUsers();
+    this.loading = false;
   }
 
   /**
