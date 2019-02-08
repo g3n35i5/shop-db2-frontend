@@ -31,7 +31,7 @@ export class SettingsService {
         name: 'Use dark theme',
         description: 'Choose if you want to use the dark theme.',
         state: null,
-        default: false
+        default: true
       }
     ];
 
