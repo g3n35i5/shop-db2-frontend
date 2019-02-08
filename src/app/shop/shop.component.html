@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <span routerLink="/">shop.db</span>
+  <span class="fill-remaining-space"></span>
+  <div *ngIf="loaded" fxShow fxHide.gt-md="true">
+    <span>{{getUsername()}}</span>
+    <button mat-icon-button>
+      <mat-icon [matBadgeHidden]="cartIsEmpty()" [matBadge]="numberOfCartItems()" matBadgeColor="warn">
+        shopping_cart
+      </mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <div fxLayout fxLayoutGap="1rem">
+    <app-cart
+      fxFlex="35%"
+      fxShow
+      fxHide.lt-lg="true"></app-cart>
+    <app-products fxFlex></app-products>
+  </div>
+</div>
