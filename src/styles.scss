@@ -19,6 +19,10 @@ body {
   flex: 1 1 auto;
 }
 
+.full-width-input {
+  width: 100%;
+}
+
 .muted {
   opacity: 0.5;
 }
@@ -42,4 +46,28 @@ body {
 
 .center-icon {
   margin: 0 auto;
+}
+
+@for $i from 1 through 5 {
+  .mb-#{$i} {
+    margin-bottom: 1rem * $i;
+  }
+}
+
+@for $i from 1 through 5 {
+  .mt-#{$i} {
+    margin-top: 1rem * $i;
+  }
+}
+
+@for $i from 1 through 5 {
+  .mr-#{$i} {
+    margin-right: 1rem * $i;
+  }
+}
+
+@for $i from 1 through 5 {
+  .ml-#{$i} {
+    margin-left: 1rem * $i;
+  }
 }
