@@ -1,6 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../interfaces/user';
+import {Observable} from 'rxjs';
+import {Product} from '../interfaces/product';
+import {map} from 'rxjs/operators';
+import {Rank} from '../interfaces/rank';
+import {Tag} from '../interfaces/tag';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +16,44 @@ export class DataService {
     public http: HttpClient
   ) { }
 
-  public getUsers() {
-    return this.getData('users');
+  public getUsers(): Observable<User[]> {
+    return this.getData('users').pipe(map(result => {
+      return result['users'];
+    }));
   }
 
-  public getRanks() {
-    return this.getData('ranks');
+  public getUser(id: number): Observable<User> {
+    return this.getData('users/' + id.toString()).pipe(map(result => {
+      return result['user'];
+    }));
+  }
+
+  public getProducts(): Observable<Product[]> {
+    return this.getData('products').pipe(map(result => {
+      return result['products'];
+    }));
+  }
+
+  public getFavorites(id: number): Observable<number[]> {
+    return this.getData('users/' + String(id) + '/favorites').pipe(map(result => {
+      return result['favorites'];
+    }));
+  }
+
+  public getRanks(): Observable<Rank[]> {
+    return this.getData('ranks').pipe(map(result => {
+      return result['ranks'];
+    }));
+  }
+
+  public getTags(): Observable<Tag[]> {
+    return this.getData('tags').pipe(map(result => {
+      return result['tags'];
+    }));
+  }
+
+  public createPurchase(data) {
+    return this.postData('purchases', data);
   }
 
   private getData(route) {

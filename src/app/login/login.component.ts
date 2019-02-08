@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
     const users = this.dataService.getUsers();
     const ranks = this.dataService.getRanks();
     forkJoin([users, ranks]).subscribe(results => {
-      this.users = results[0]['users'];
-      this.ranks = results[1]['ranks'];
+      this.users = results[0];
+      this.ranks = results[1];
       this.processingData();
     });
   }
