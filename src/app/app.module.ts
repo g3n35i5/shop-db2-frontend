@@ -27,6 +27,7 @@ import { DepositsComponent } from './userhistory/deposits/deposits.component';
 import { PurchasesComponent } from './userhistory/purchases/purchases.component';
 import { RefundsComponent } from './userhistory/refunds/refunds.component';
 import { CreditwarningComponent } from './shop/dialogs/creditwarning/creditwarning.component';
+import { GlobalhistoryComponent } from './globalhistory/globalhistory.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CreditwarningComponent } from './shop/dialogs/creditwarning/creditwarni
     DepositsComponent,
     PurchasesComponent,
     RefundsComponent,
-    CreditwarningComponent
+    CreditwarningComponent,
+    GlobalhistoryComponent
   ],
   imports: [
     AvatarModule.forRoot(),

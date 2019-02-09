@@ -41,6 +41,12 @@ export class DataService {
     }));
   }
 
+  public getPurchases(): Observable<Purchase[]> {
+    return this.getData('purchases').pipe(map(result => {
+      return result['purchases'];
+    }));
+  }
+
   public getFavorites(id: number): Observable<number[]> {
     return this.getData('users/' + String(id) + '/favorites').pipe(map(result => {
       return result['favorites'];
