@@ -5,11 +5,13 @@ import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { ShopComponent } from './shop/shop.component';
+import { UserhistoryComponent } from './userhistory/userhistory.component';
 
 const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'shop/:id', component: ShopComponent },
+  { path: 'userhistory/:id', component: UserhistoryComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <span routerLink="/">shop.db</span>
+</mat-toolbar>
+<app-loading *ngIf="!loaded"></app-loading>
+<div class="container" *ngIf="loaded">
+  <mat-card>
+    <mat-card-actions>
+      <button mat-button (click)="goBackToShop()">
+        <mat-icon class="mr-1">arrow_back</mat-icon>
+        Back to shop
+      </button>
+    </mat-card-actions>
+    <mat-card-header>
+      <mat-card-title>Hello {{ getUsername() }}!</mat-card-title>
+      <mat-card-subtitle>
+        Here you will find a history of all your purchases, deposits and refunds.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group color="accent">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mr-1">shopping_cart</mat-icon>
+            Purchases
+          </ng-template>
+          <app-purchases [user]="user"></app-purchases>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mr-1">attach_money</mat-icon>
+            Deposits
+          </ng-template>
+          <app-deposits [user]="user"></app-deposits>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mr-1">settings_backup_restore</mat-icon>
+            Refunds
+          </ng-template>
+          <app-refunds [user]="user"></app-refunds>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

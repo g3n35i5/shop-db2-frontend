@@ -6,6 +6,9 @@ import {Product} from '../interfaces/product';
 import {map} from 'rxjs/operators';
 import {Rank} from '../interfaces/rank';
 import {Tag} from '../interfaces/tag';
+import {Purchase} from '../interfaces/purchase';
+import {Deposit} from '../interfaces/deposit';
+import {Refund} from '../interfaces/refund';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,10 @@ export class DataService {
   constructor(
     public http: HttpClient
   ) { }
+
+  public getUsername(user: User): string {
+    return [user.firstname, user.lastname].join(' ');
+  }
 
   public getUsers(): Observable<User[]> {
     return this.getData('users').pipe(map(result => {
@@ -50,6 +57,28 @@ export class DataService {
     return this.getData('tags').pipe(map(result => {
       return result['tags'];
     }));
+  }
+
+  public getUserPurchases(id: number): Observable<Purchase[]> {
+    return this.getData('users/' + String(id) + '/purchases').pipe(map(result => {
+      return result['purchases'];
+    }));
+  }
+
+  public getUserDeposits(id: number): Observable<Deposit[]> {
+    return this.getData('users/' + String(id) + '/deposits').pipe(map(result => {
+      return result['deposits'];
+    }));
+  }
+
+  public getUserRefunds(id: number): Observable<Refund[]> {
+    return this.getData('users/' + String(id) + '/refunds').pipe(map(result => {
+      return result['refunds'];
+    }));
+  }
+
+  public togglePurchaseRevoke(id: number, data: any) {
+    return this.putData('purchases/' + id.toString(), data);
   }
 
   public createPurchase(data) {

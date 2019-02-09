@@ -22,6 +22,10 @@ import { CartComponent } from './shop/cart/cart.component';
 import { ProductsComponent } from './shop/products/products.component';
 import { ProductItemComponent } from './shop/products/product-item/product-item.component';
 import { FavoriteItemComponent } from './shop/products/favorite-item/favorite-item.component';
+import { UserhistoryComponent } from './userhistory/userhistory.component';
+import { DepositsComponent } from './userhistory/deposits/deposits.component';
+import { PurchasesComponent } from './userhistory/purchases/purchases.component';
+import { RefundsComponent } from './userhistory/refunds/refunds.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { FavoriteItemComponent } from './shop/products/favorite-item/favorite-it
     CartComponent,
     ProductsComponent,
     ProductItemComponent,
-    FavoriteItemComponent
+    FavoriteItemComponent,
+    UserhistoryComponent,
+    DepositsComponent,
+    PurchasesComponent,
+    RefundsComponent
   ],
   imports: [
     AvatarModule.forRoot(),
