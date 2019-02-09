@@ -1,10 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { CreditwarningComponent } from './dialogs/creditwarning/creditwarning.component';
 import { ShopService } from './shop.service';
 import { Subscription } from 'rxjs';
 import { CartItem } from '../interfaces/cartitem';
 import { CartState } from '../interfaces/cartstate';
-import {User} from '../interfaces/user';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-shop',
@@ -22,7 +24,8 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   constructor(
     private shopService: ShopService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
     this.route.params.subscribe(params => {
       this.userID = params['id'];
@@ -35,6 +38,9 @@ export class ShopComponent implements OnInit, OnDestroy {
       this.loaded = state.loaded;
       this.cart = state.cart;
       this.user = state.user;
+      if (this.user.credit < 0) {
+        this.openCreditWarning();
+      }
     });
   }
 
@@ -52,5 +58,17 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   getUsername(): string {
     return this.shopService.getUsername();
+  }
+
+  /** Opens the credit warning dialog. **/
+  openCreditWarning(): void {
+    const dialogRef = this.dialog.open(CreditwarningComponent, {
+      width: '400px',
+      data: {
+        credit: this.user.credit,
+        debtLimit: this.shopService.getDebtLimit()
+      },
+      disableClose: true
+    });
   }
 }

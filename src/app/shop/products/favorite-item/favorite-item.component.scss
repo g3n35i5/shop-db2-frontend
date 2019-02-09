@@ -1,3 +1,7 @@
 .addProductButtons {
-  display: flex;
+  display: inline-flex;
+}
+
+mat-card {
+  text-align: center !important;
 }

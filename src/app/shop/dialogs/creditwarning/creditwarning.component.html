@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Warning</h1>
+<div class="mat-typography">
+
+  <mat-dialog-content class="centerText">
+    <div *ngIf="canStillShop()">
+      <p>
+        Your balance's gone negative. Please note that you may have a maximum of
+        {{debtLimit | customCurrency | currency: 'EUR'}} debt.
+      </p>
+      <p>
+        As an educational measure you have to wait
+      </p>
+      <h1 class="mat-display-1 time-left">{{ timeLeft() }} seconds</h1>
+      <p>seconds until you can use the shop.</p>
+    </div>
+
+    <div *ngIf="!canStillShop()">
+      <p>
+        Your credit has fallen below the allowed limit of
+        {{debtLimit | customCurrency | currency: 'EUR'}}
+      </p>
+      <p>
+        For this reason the shop is no longer accessible to you.
+        Please pay back your debt so you can buy something again.
+      </p>
+    </div>
+  </mat-dialog-content>
+</div>
+
+<mat-dialog-actions align="end">
+  <div *ngIf="canStillShop()">
+    <button mat-button color="primary" (click)="goHome()">Go home</button>
+    <button [disabled]="disableClose()" mat-button color="primary" matDialogClose>Dismiss</button>
+  </div>
+  <div *ngIf="!canStillShop()">
+    <button mat-button color="primary" (click)="goHome()">Go home</button>
+  </div>
+</mat-dialog-actions>

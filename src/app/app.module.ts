@@ -26,6 +26,7 @@ import { UserhistoryComponent } from './userhistory/userhistory.component';
 import { DepositsComponent } from './userhistory/deposits/deposits.component';
 import { PurchasesComponent } from './userhistory/purchases/purchases.component';
 import { RefundsComponent } from './userhistory/refunds/refunds.component';
+import { CreditwarningComponent } from './shop/dialogs/creditwarning/creditwarning.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RefundsComponent } from './userhistory/refunds/refunds.component';
     UserhistoryComponent,
     DepositsComponent,
     PurchasesComponent,
-    RefundsComponent
+    RefundsComponent,
+    CreditwarningComponent
   ],
   imports: [
     AvatarModule.forRoot(),
@@ -58,6 +60,9 @@ import { RefundsComponent } from './userhistory/refunds/refunds.component';
     ReactiveFormsModule
   ],
   providers: [],
+  entryComponents: [
+    CreditwarningComponent
+  ],
   bootstrap: [AppComponent]
 })
 
