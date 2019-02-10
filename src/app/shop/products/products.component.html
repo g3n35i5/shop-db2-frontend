@@ -38,9 +38,9 @@
         <app-product-item *ngFor="let product of filtered" [product]="product"></app-product-item>
       </mat-list>
       <div *ngIf="filtered.length <= 0" class="center-card center-text">
-        <h1 class="mat-h1">🙁</h1>
+        <h1 class="mat-h1">Oh, no!</h1>
         <p class="mat-body-1">
-          Oh, no! It seems as if there are no products that match your selection...
+          It seems as if there are no products that match your selection...
         </p>
       </div>
     </mat-card-content>

@@ -4,6 +4,7 @@ import { CartState } from '../../interfaces/cartstate';
 import { Subscription } from 'rxjs';
 import { Product } from '../../interfaces/product';
 import { Tag } from '../../interfaces/tag';
+import {ShopState} from '../../interfaces/shopstate';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,7 @@ import { Tag } from '../../interfaces/tag';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
+  private shopSubscription: Subscription;
 
   public searchText = '';
   public products: Product[];
@@ -28,17 +29,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.shopService.State.subscribe((state: CartState) => {
+    this.shopSubscription = this.shopService.shopState.subscribe((state: ShopState) => {
       this.loaded = state.loaded;
       this.products = state.products;
       this.favorites = state.favorites;
       this.tags = state.tags;
-      this.filtered = this.products.filter(p => this.favorites.indexOf(p.id) >= 0);
+      this.enableFavorites();
     });
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.shopSubscription.unsubscribe();
   }
 
   /**

@@ -4,6 +4,7 @@ import {CartState} from '../../interfaces/cartstate';
 import {Subscription} from 'rxjs';
 import {CartItem} from '../../interfaces/cartitem';
 import {User} from '../../interfaces/user';
+import {ShopState} from '../../interfaces/shopstate';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,8 @@ import {User} from '../../interfaces/user';
 })
 export class CartComponent implements OnInit {
 
-  private subscription: Subscription;
+  private shopSubscription: Subscription;
+  private cartSubscription: Subscription;
   public cart: CartItem[];
   public user: User;
   public loaded: boolean;
@@ -23,11 +25,14 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.subscription = this.shopService.State.subscribe((state: CartState) => {
+    this.shopSubscription = this.shopService.shopState.subscribe((state: ShopState) => {
       this.loaded = state.loaded;
       this.user = state.user;
-      this.cart = state.cart;
+    });
+
+    this.cartSubscription = this.shopService.cartState.subscribe((state: CartState) => {
       this.disableInput = state.disableInput;
+      this.cart = state.cart;
     });
   }
 

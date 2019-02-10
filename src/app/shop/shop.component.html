@@ -1,14 +1,25 @@
 <mat-toolbar color="primary">
-  <span routerLink="/">shop.db</span>
-  <span class="fill-remaining-space"></span>
-  <div *ngIf="loaded" fxShow fxHide.gt-md="true">
-    <span>{{getUsername()}}</span>
-    <button mat-icon-button>
-      <mat-icon [matBadgeHidden]="cartIsEmpty()" [matBadge]="numberOfCartItems()" matBadgeColor="warn">
-        shopping_cart
-      </mat-icon>
-    </button>
-  </div>
+  <mat-toolbar-row>
+    <span routerLink="/">shop.db</span>
+    <span class="fill-remaining-space"></span>
+    <span *ngIf="loaded" fxShow fxHide.gt-md="true">
+      <mat-icon class="toolbar-icon">person</mat-icon>
+      <span class="toolbar-username">{{getUsername()}}</span>
+      <span>{{ user.credit | customCurrency | currency: 'EUR' }}</span>
+      <button mat-icon-button [routerLink]="['/userhistory', user.id]">
+        <mat-icon class="toolbar-icon">history</mat-icon>
+      </button>
+    </span>
+
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="loaded" fxShow fxHide.gt-md="true">
+    <mat-icon [matBadgeHidden]="cartIsEmpty()" [matBadge]="numberOfCartItems()" matBadgeColor="warn">
+      shopping_cart
+    </mat-icon>
+    <span class="fill-remaining-space"></span>
+    <button mat-flat-button color="accent" [disabled]="disableInput" (click)="submitCart()">Buy</button>
+    <button mat-button (click)="deleteCart()">Delete</button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="container">

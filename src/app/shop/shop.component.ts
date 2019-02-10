@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { CartItem } from '../interfaces/cartitem';
 import { CartState } from '../interfaces/cartstate';
 import { User } from '../interfaces/user';
+import {ShopState} from '../interfaces/shopstate';
 
 @Component({
   selector: 'app-shop',
@@ -16,9 +17,12 @@ import { User } from '../interfaces/user';
 export class ShopComponent implements OnInit, OnDestroy {
 
   private userID: number;
-  private subscription: Subscription;
+  private firstVisit: boolean;
+  private shopSubscription: Subscription;
+  private cartSubscription: Subscription;
 
   public loaded: boolean;
+  public disableInput: boolean;
   public cart: CartItem[];
   public user: User;
 
@@ -34,18 +38,30 @@ export class ShopComponent implements OnInit, OnDestroy {
 }
 
   ngOnInit() {
-    this.subscription = this.shopService.State.subscribe((state: CartState) => {
+    this.firstVisit = true;
+    this.shopSubscription = this.shopService.shopState.subscribe((state: ShopState) => {
       this.loaded = state.loaded;
-      this.cart = state.cart;
       this.user = state.user;
-      if (this.user.credit < 0) {
+      if (this.user.credit < 0 && this.firstVisit) {
         this.openCreditWarning();
       }
+    });
+    this.cartSubscription = this.shopService.cartState.subscribe((state: CartState) => {
+      this.disableInput = state.disableInput;
     });
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.shopSubscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
+  }
+
+  submitCart(): void {
+    this.shopService.submitCart();
+  }
+
+  deleteCart(): void {
+    this.shopService.deleteCart();
   }
 
   numberOfCartItems(): number {
@@ -68,7 +84,13 @@ export class ShopComponent implements OnInit, OnDestroy {
         credit: this.user.credit,
         debtLimit: this.shopService.getDebtLimit()
       },
+      // This prevents the dialog from being closed before the time has expired.
       disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // We set firstVisit to false so that the dialog is not reopened when the user is updated.
+      this.firstVisit = false;
     });
   }
 }

@@ -10,6 +10,7 @@ import {forkJoin, Observable, Subject, Subscription} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {SettingsService} from '../settings/settings.service';
 import {Router} from '@angular/router';
+import {ShopState} from '../interfaces/shopstate';
 
 @Injectable({
   providedIn: 'root'
@@ -25,22 +26,27 @@ export class ShopService {
   private cart: CartItem[];
   private ranks: Rank[];
   private tags: Tag[];
+  private shopSubject = new Subject<ShopState>();
   private cartSubject = new Subject<CartState>();
-  State = this.cartSubject.asObservable();
+  shopState = this.shopSubject.asObservable();
+  cartState = this.cartSubject.asObservable();
 
   constructor(
     private dataService: DataService,
     private settingsService: SettingsService,
     private router: Router
   ) {
-    this.cartSubject.next({
+    this.shopSubject.next({
       loaded: false,
-      disableInput: true,
       user: null,
       products: null,
       favorites: null,
-      cart: null,
       tags: null
+    });
+
+    this.cartSubject.next({
+      disableInput: true,
+      cart: []
     });
   }
 
@@ -49,16 +55,13 @@ export class ShopService {
     this.reloadData();
   }
 
-  private publishSubject(): void {
-    this.disableInput = false;
-    this.cartSubject.next({
-      loaded: this.loaded,
-      disableInput: this.disableInput,
+  private publishShop(): void {
+    this.shopSubject.next({
+      loaded: true,
       user: this.user,
       products: this.products,
       favorites: this.favorites,
-      tags: this.tags,
-      cart: this.cart
+      tags: this.tags
     });
   }
 
@@ -76,7 +79,7 @@ export class ShopService {
       this.ranks = results[3];
       this.tags = results[4];
       this.cart = [];
-      this.publishSubject();
+      this.publishShop();
     });
   }
 
@@ -85,13 +88,14 @@ export class ShopService {
    * @param product is the item to be added to the cart.
    */
   addProduct(product: Product) {
+    this.cartSubject.next({disableInput: true, cart: this.cart});
     const item: CartItem = this.cart.find(c => c.product === product);
     if (!item) {
       this.cart.push({product: product, count: 1});
     } else {
       item.count ++;
     }
-    this.publishSubject();
+    this.cartSubject.next({disableInput: false, cart: this.cart});
   }
 
   /**
@@ -99,6 +103,7 @@ export class ShopService {
    * @param product is the item to be removed.
    */
   removeProduct(product: Product) {
+    this.cartSubject.next({disableInput: true, cart: this.cart});
     const item: CartItem = this.cart.find(c => c.product === product);
     if (item) {
       if (item.count === 1) {
@@ -107,7 +112,7 @@ export class ShopService {
         item.count --;
       }
     }
-    this.publishSubject();
+    this.cartSubject.next({disableInput: false, cart: this.cart});
   }
 
 
@@ -120,15 +125,14 @@ export class ShopService {
    */
   deleteCart(): void {
     this.cart = [];
-    this.publishSubject();
+    this.cartSubject.next({disableInput: false, cart: this.cart});
   }
 
   /**
    * Submit the shopping cart.
    */
   submitCart(): void {
-    this.disableInput = true;
-    this.publishSubject();
+    this.cartSubject.next({disableInput: true, cart: this.cart});
     const requests = [];
     for (const item of this.cart) {
       const data = { user_id: this.user.id, product_id: item.product.id, amount: item.count };
@@ -141,11 +145,10 @@ export class ShopService {
         this.deleteCart();
         this.reloadData();
         this.disableInput = false;
-        this.publishSubject();
+        this.cartSubject.next({disableInput: false, cart: this.cart});
       }
     }, () => {
-      this.disableInput = false;
-      this.publishSubject();
+      this.cartSubject.next({disableInput: false, cart: this.cart});
     });
   }
 
