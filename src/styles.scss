@@ -32,11 +32,13 @@ table {
 }
 
 .content {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .container {
   margin: 1rem;
+  padding-bottom: 1rem;
 }
 
 .center-card {
