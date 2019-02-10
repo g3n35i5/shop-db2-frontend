@@ -5,6 +5,7 @@ import { AvatarModule } from 'ng2-avatar';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 import { CustomCurrency } from './filters';
 import { CustomTimestamp } from './filters';
@@ -52,6 +53,7 @@ import { GlobalhistoryComponent } from './globalhistory/globalhistory.component'
   ],
   imports: [
     AvatarModule.forRoot(),
+    ScrollToModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -11,12 +11,20 @@
   </button>
 </mat-toolbar>
 
-<div class="container">
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="container" *ngIf="!loading">
   <mat-card>
     <mat-card-content>
-      <app-loading *ngIf="loading"></app-loading>
-      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!loading">
-        <div fxFlex="50%" fxFlex.lt-md="100%">
+      <div fxLayout="row" fxLayoutAlign="center center" >
+        <div fxFlex.gt-md="50%" fxFlex.gt-sm="75%" fxFlex="100">
+          <div class="pagination-wrapper" id="top">
+            <mat-chip-list>
+              <div *ngFor="let group of sortedUsers">
+                <mat-chip color="accent" [ngx-scroll-to]="group.key">{{ group.key }}</mat-chip>
+              </div>
+            </mat-chip-list>
+          </div>
           <mat-list *ngFor="let group of sortedUsers">
             <h1 class="mat-display-1 mb-2" [id]="group.key">{{group.key}}</h1>
             <div class="mat-elevation-z1 mb-1" matRipple *ngFor="let user of group.users">
@@ -34,6 +42,11 @@
           </mat-list>
         </div>
       </div>
+
+      <!-- Scroll to top button -->
+      <button mat-fab class="topbutton" color="accent" [ngx-scroll-to]="'top'">
+        <mat-icon>keyboard_arrow_up</mat-icon>
+      </button>
     </mat-card-content>
   </mat-card>
 </div>

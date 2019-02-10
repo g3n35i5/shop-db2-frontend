@@ -15,8 +15,8 @@ import {Sort} from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-  private sortByLastname: boolean;
-  private loading: boolean;
+  public sortByLastname: boolean;
+  public loading: boolean;
 
   private users: User[];
   private ranks: Rank[];

@@ -1,3 +1,25 @@
 .userlink {
   text-decoration: none;
 }
+
+.pagination-wrapper {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+$chip-size: 3rem;
+
+mat-chip {
+  min-height: $chip-size !important;
+  min-width: $chip-size !important;
+  border-radius: $chip-size / 2 !important;
+  padding-left: $chip-size * 0.4 !important;
+}
+
+.topbutton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
