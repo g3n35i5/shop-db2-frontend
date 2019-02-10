@@ -56,6 +56,10 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.cartSubscription.unsubscribe();
   }
 
+  disableBuyButton(): boolean {
+    return this.disableInput || this.shopService.cartIsEmpty();
+  }
+
   submitCart(): void {
     this.shopService.submitCart();
   }
