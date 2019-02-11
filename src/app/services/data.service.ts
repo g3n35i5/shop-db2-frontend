@@ -91,6 +91,10 @@ export class DataService {
     return this.postData('purchases', data);
   }
 
+  public backendOnline() {
+    return this.getData('');
+  }
+
   private getData(route) {
     return this.makeRequest(route, null, 'GET');
   }

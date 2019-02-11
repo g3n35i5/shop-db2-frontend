@@ -29,6 +29,9 @@ import { PurchasesComponent } from './userhistory/purchases/purchases.component'
 import { RefundsComponent } from './userhistory/refunds/refunds.component';
 import { CreditwarningComponent } from './shop/dialogs/creditwarning/creditwarning.component';
 import { GlobalhistoryComponent } from './globalhistory/globalhistory.component';
+import { OfflineComponent } from './offline/offline.component';
+import { RegisterComponent } from './register/register.component';
+import { InterceptorComponent } from './services/interceptor/interceptor.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { GlobalhistoryComponent } from './globalhistory/globalhistory.component'
     PurchasesComponent,
     RefundsComponent,
     CreditwarningComponent,
-    GlobalhistoryComponent
+    GlobalhistoryComponent,
+    OfflineComponent,
+    RegisterComponent
   ],
   imports: [
     AvatarModule.forRoot(),
@@ -63,7 +68,13 @@ import { GlobalhistoryComponent } from './globalhistory/globalhistory.component'
     FlexLayoutModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorComponent,
+      multi: true,
+    }
+  ],
   entryComponents: [
     CreditwarningComponent
   ],

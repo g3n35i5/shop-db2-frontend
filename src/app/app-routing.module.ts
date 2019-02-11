@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { ShopComponent } from './shop/shop.component';
 import { UserhistoryComponent } from './userhistory/userhistory.component';
 import { GlobalhistoryComponent } from './globalhistory/globalhistory.component';
+import { OfflineComponent } from './offline/offline.component';
 
 const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'shop/:id', component: ShopComponent },
   { path: 'globalhistory', component: GlobalhistoryComponent },
   { path: 'userhistory/:id', component: UserhistoryComponent },
+  { path: 'offline', component: OfflineComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
