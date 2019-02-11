@@ -91,6 +91,10 @@ export class DataService {
     return this.postData('purchases', data);
   }
 
+  public registerUser(data: any) {
+    return this.postData('register', data);
+  }
+
   public backendOnline() {
     return this.getData('');
   }
