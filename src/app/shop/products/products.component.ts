@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, HostListener} from '@angular/core';
 import { ShopService } from '../shop.service';
-import { CartState } from '../../interfaces/cartstate';
 import { Subscription } from 'rxjs';
 import { Product } from '../../interfaces/product';
 import { Tag } from '../../interfaces/tag';
@@ -14,6 +13,11 @@ import {ShopState} from '../../interfaces/shopstate';
 export class ProductsComponent implements OnInit, OnDestroy {
   private shopSubscription: Subscription;
 
+  // The regex pattern only accepts numbers followed by the string 'Enter'
+  private barcodePattern: RegExp = new RegExp('^[0-9]+Enter');
+  private barcodeScannerInput: string[];
+  private barcodeScannerPressed: boolean;
+
   public searchText = '';
   public products: Product[];
   private favorites: number[];
@@ -26,6 +30,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private shopService: ShopService
   ) {
     this.showFavorites = true;
+    this.barcodeScannerPressed = false;
+    this.barcodeScannerInput = [];
   }
 
   ngOnInit() {
@@ -40,6 +46,31 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.shopSubscription.unsubscribe();
+  }
+
+  /**
+   * Handle keyboard inputs for the barcode scanner.
+   * @param event is the keyboard input event.
+   */
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.barcodeScannerInput.push(event.key);
+    if (this.barcodeScannerPressed === false) {
+      setTimeout(() => {
+        let barcode = this.barcodeScannerInput.join('');
+        if (this.barcodePattern.test(barcode)) {
+          barcode = barcode.replace('Enter', '');
+          const product = this.products.find(p => p.barcode === barcode);
+          if (product) {
+            this.shopService.addProduct(product);
+          }
+        }
+        this.barcodeScannerInput = [];
+        this.barcodeScannerPressed = false;
+      }, 100);
+      this.barcodeScannerPressed = true
+      ;
+    }
   }
 
   /**
