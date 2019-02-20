@@ -25,7 +25,13 @@
           <div class="pagination-wrapper" id="top">
             <mat-chip-list>
               <div *ngFor="let group of sortedUsers">
-                <mat-chip color="accent" [ngx-scroll-to]="group.key">{{ group.key }}</mat-chip>
+                <mat-chip
+                  color="accent"
+                  [ngx-scroll-to]="group.key"
+                  [ngx-scroll-to-offset]="75"
+                  [ngx-scroll-to-duration]="100">
+                  {{ group.key }}
+                </mat-chip>
               </div>
             </mat-chip-list>
           </div>
@@ -48,7 +54,7 @@
       </div>
 
       <!-- Scroll to top button -->
-      <button mat-fab class="topbutton" color="accent" [ngx-scroll-to]="'top'">
+      <button mat-fab class="topbutton" color="accent" [ngx-scroll-to]="'top'" [ngx-scroll-to-duration]="100">
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </mat-card-content>
