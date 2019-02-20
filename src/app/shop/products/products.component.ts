@@ -78,7 +78,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
    */
   enableFavorites(): void {
     this.showFavorites = true;
-    this.filtered = this.products.filter(p => this.favorites.indexOf(p.id) >= 0);
+    const trimmedFavorites = this.favorites.slice(0, Math.min(...[10, this.favorites.length]));
+    this.filtered = [];
+    trimmedFavorites.forEach(id => {
+      this.filtered.push(this.products.find(p => p.id === id));
+    });
   }
 
   /**
