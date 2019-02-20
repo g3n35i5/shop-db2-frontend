@@ -6,11 +6,10 @@ import { CartItem } from '../interfaces/cartitem';
 import { CartState } from '../interfaces/cartstate';
 import { Tag } from '../interfaces/tag';
 import { DataService } from '../services/data.service';
-import {forkJoin, Observable, Subject, Subscription} from 'rxjs';
-import { map } from 'rxjs/operators';
-import {SettingsService} from '../settings/settings.service';
-import {Router} from '@angular/router';
-import {ShopState} from '../interfaces/shopstate';
+import { forkJoin, Subject } from 'rxjs';
+import { SettingsService } from '../settings/settings.service';
+import { Router } from '@angular/router';
+import { ShopState } from '../interfaces/shopstate';
 import { environment } from '../../environments/environment';
 
 @Injectable({

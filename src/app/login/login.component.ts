@@ -5,8 +5,6 @@ import { User } from '../interfaces/user';
 import { Rank } from '../interfaces/rank';
 import { SortedUsers } from '../interfaces/sortedusers';
 import { forkJoin } from 'rxjs';
-import {Sort} from '@angular/material';
-
 
 @Component({
   selector: 'app-login',

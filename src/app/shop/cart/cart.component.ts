@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private shopService: ShopService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.shopSubscription = this.shopService.shopState.subscribe((state: ShopState) => {

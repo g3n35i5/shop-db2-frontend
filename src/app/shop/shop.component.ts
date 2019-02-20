@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { CartItem } from '../interfaces/cartitem';
 import { CartState } from '../interfaces/cartstate';
 import { User } from '../interfaces/user';
-import {ShopState} from '../interfaces/shopstate';
+import { ShopState } from '../interfaces/shopstate';
 
 @Component({
   selector: 'app-shop',
