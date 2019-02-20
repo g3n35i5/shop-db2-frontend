@@ -78,6 +78,9 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  /**
+   * Submit the registration.
+   */
   submit(): void {
     if (this.registerForm.invalid) {
       this.snackbar.openSnackBar('Form is invalid');
