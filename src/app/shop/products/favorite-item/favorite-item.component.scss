@@ -5,3 +5,13 @@
 mat-card {
   text-align: center !important;
 }
+
+mat-card > mat-card-title {
+  font-size: 1rem;
+  text-wrap: none;
+  min-height: 3rem;
+}
+
+mat-card > img {
+  width: 100% !important;
+}
