@@ -90,7 +90,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
    */
   filterProducts(tag: Tag): void {
     this.showFavorites = false;
-    this.filtered = this.products.filter(product => product.tags.indexOf(tag.id) >= 0);
+    this.filtered = this.products
+      .filter(product => product.tags.indexOf(tag.id) >= 0)
+      .sort((p1, p2) => {
+        return p1.name.toUpperCase().localeCompare(p2.name.toUpperCase());
+      });
   }
 
   /**
