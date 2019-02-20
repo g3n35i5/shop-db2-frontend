@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 import {SettingsService} from '../settings/settings.service';
 import {Router} from '@angular/router';
 import {ShopState} from '../interfaces/shopstate';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -164,7 +165,7 @@ export class ShopService {
    * Get the image url for a product.
    */
   imageURL(product: Product) {
-    const path = '/api/images/';
+    const path = environment.apiURL + 'images/';
     return product.imagename !== null ? path + product.imagename : path;
   }
 
