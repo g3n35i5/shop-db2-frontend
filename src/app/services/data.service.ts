@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {User} from '../interfaces/user';
-import {Observable} from 'rxjs';
-import {Product} from '../interfaces/product';
-import {map} from 'rxjs/operators';
-import {Rank} from '../interfaces/rank';
-import {Tag} from '../interfaces/tag';
-import {Purchase} from '../interfaces/purchase';
-import {Deposit} from '../interfaces/deposit';
-import {Refund} from '../interfaces/refund';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../interfaces/user';
+import { Observable } from 'rxjs';
+import { Product } from '../interfaces/product';
+import { map } from 'rxjs/operators';
+import { Rank } from '../interfaces/rank';
+import { Tag } from '../interfaces/tag';
+import { Purchase } from '../interfaces/purchase';
+import { Deposit } from '../interfaces/deposit';
+import { Refund } from '../interfaces/refund';
 import { environment } from '../../environments/environment';
 
 @Injectable({
