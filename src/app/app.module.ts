@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 
 import { CustomCurrency } from './filters';
 import { CustomTimestamp } from './filters';
@@ -59,6 +60,7 @@ import { InterceptorComponent } from './services/interceptor/interceptor.compone
   imports: [
     AvatarModule.forRoot(),
     ScrollToModule.forRoot(),
+    AngularStickyThingsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -1,65 +1,67 @@
-<mat-card class="cart">
-  <app-loading *ngIf="!loaded"></app-loading>
-  <div *ngIf="loaded">
-    <mat-card-header class="customheader cartbackground">
-      <div class="container-outer">
-        <div class="avatar">
-          <avatar class="avatar" [size]="80" [name]="getUsername()"
-                  background="#212121" [displayType]="'circle'"></avatar>
+<div stickyThing marginTop="16">
+  <mat-card class="cart">
+    <app-loading *ngIf="!loaded"></app-loading>
+    <div *ngIf="loaded">
+      <mat-card-header class="customheader cartbackground">
+        <div class="container-outer">
+          <div class="avatar">
+            <avatar class="avatar" [size]="80" [name]="getUsername()"
+                    background="#212121" [displayType]="'circle'"></avatar>
+          </div>
+          <div class="container-inner">
+            <section class="username">
+              {{getUsername()}}
+              <span class="fill-remaining-space"></span>
+              <button mat-icon-button class="mr-1"
+                      [routerLink]="['/userhistory', user.id]">
+                <mat-icon>history</mat-icon>
+              </button>
+            </section>
+            <section class="usercredit">
+              {{user.credit | customCurrency | currency: 'EUR'}}
+            </section>
+          </div>
         </div>
-        <div class="container-inner">
-          <section class="username">
-            {{getUsername()}}
-            <span class="fill-remaining-space"></span>
-            <button mat-icon-button class="mr-1"
-                    [routerLink]="['/userhistory', user.id]">
-              <mat-icon>history</mat-icon>
-            </button>
-            <!-- <mat-icon mat-list-icon >history</mat-icon> -->
-          </section>
-          <section class="usercredit">
-            {{user.credit | customCurrency | currency: 'EUR'}}
-          </section>
+      </mat-card-header>
+      <mat-card-content class="cart-content">
+        <div *ngIf="!cartIsEmpty()">
+          <!--List all cart products-->
+          <mat-list>
+            <app-product-item
+              *ngFor="let item of cart"
+              [product]="item.product"
+              [hideImageOnSmallScreens]="true">
+            </app-product-item>
+
+            <!-- Show the basket sum. -->
+            <mat-list-item class="basketSum">
+              <h3 matLine>Subtotal</h3>
+              <span class="fill-remaining-space"></span>
+              {{shoppingCartSum() | customCurrency | currency: 'EUR'}}
+            </mat-list-item>
+
+            <!-- Display the account balance that will be created when the
+                 purchase is executed. -->
+            <mat-list-item class="basketSum">
+              <h3 matLine>New balance</h3>
+              <span class="fill-remaining-space"></span>
+              {{creditAfterPurchase() | customCurrency | currency: 'EUR'}}
+            </mat-list-item>
+          </mat-list>
         </div>
-      </div>
-    </mat-card-header>
-    <mat-card-content class="cart-content">
-      <div *ngIf="!cartIsEmpty()">
-        <!--List all cart products-->
-        <mat-list>
-          <app-product-item
-            *ngFor="let item of cart"
-            [product]="item.product"
-            [hideImageOnSmallScreens]="true">
-          </app-product-item>
-
-          <!-- Show the basket sum. -->
-          <mat-list-item class="basketSum">
-            <h3 matLine>Subtotal</h3>
-            <span class="fill-remaining-space"></span>
-            {{shoppingCartSum() | customCurrency | currency: 'EUR'}}
-          </mat-list-item>
-
-          <!-- Display the account balance that will be created when the
-               purchase is executed. -->
-          <mat-list-item class="basketSum">
-            <h3 matLine>New balance</h3>
-            <span class="fill-remaining-space"></span>
-            {{creditAfterPurchase() | customCurrency | currency: 'EUR'}}
-          </mat-list-item>
-        </mat-list>
-      </div>
-      <div *ngIf="cartIsEmpty()">
-        <div class="center-card center-text">
-          <p class="mat-body-1">Your shopping cart is empty</p>
-          <mat-icon mat-list-icon>help_outline</mat-icon>
+        <div *ngIf="cartIsEmpty()">
+          <div class="center-card center-text">
+            <p class="mat-body-1">Your shopping cart is empty</p>
+            <mat-icon mat-list-icon>help_outline</mat-icon>
+          </div>
         </div>
-      </div>
 
-    </mat-card-content>
-    <mat-card-actions class="cart-content" *ngIf="!cartIsEmpty()">
-      <button mat-button [disabled]="disableInput" (click)="submitCart()">Buy</button>
-      <button mat-button color="warn" (click)="deleteCart()">Delete</button>
-    </mat-card-actions>
-  </div>
-</mat-card>
+      </mat-card-content>
+      <mat-card-actions class="cart-content" *ngIf="!cartIsEmpty()">
+        <button mat-button [disabled]="disableInput" (click)="submitCart()">Buy</button>
+        <button mat-button color="warn" (click)="deleteCart()">Delete</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
+
