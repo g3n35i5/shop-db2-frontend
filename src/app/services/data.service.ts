@@ -9,11 +9,14 @@ import {Tag} from '../interfaces/tag';
 import {Purchase} from '../interfaces/purchase';
 import {Deposit} from '../interfaces/deposit';
 import {Refund} from '../interfaces/refund';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  apiURL = environment.apiURL;
 
   constructor(
     public http: HttpClient
@@ -117,15 +120,15 @@ export class DataService {
      * the HTTP_INTERCEPTOR will redirect you to the offline page
      * and cancel the request.
      */
-    this.http.get('/api/');
+    this.http.get(this.apiURL);
 
     /** Switch case for the different request methods. */
     if (type === 'GET') {
-      return this.http.get('/api/' + route);
+      return this.http.get(this.apiURL + route);
     } else if (type === 'POST') {
-      return this.http.post('/api/' + route, data);
+      return this.http.post(this.apiURL + route, data);
     } else if (type === 'PUT') {
-      return this.http.put('/api/' + route, data);
+      return this.http.put(this.apiURL + route, data);
     } else {
       console.log('DataService: Invalid request type: ' + type);
     }
