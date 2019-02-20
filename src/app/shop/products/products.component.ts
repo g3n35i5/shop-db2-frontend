@@ -1,9 +1,9 @@
-import {Component, OnInit, OnDestroy, HostListener} from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { ShopService } from '../shop.service';
 import { Subscription } from 'rxjs';
 import { Product } from '../../interfaces/product';
 import { Tag } from '../../interfaces/tag';
-import {ShopState} from '../../interfaces/shopstate';
+import { ShopState } from '../../interfaces/shopstate';
 
 @Component({
   selector: 'app-products',
