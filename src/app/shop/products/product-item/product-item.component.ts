@@ -10,6 +10,7 @@ import { ShopService } from '../../shop.service';
 export class ProductItemComponent {
 
   @Input()product: Product;
+  @Input()hideImageOnSmallScreens = false;
   constructor(private shopService: ShopService) {}
 
   addToCart(product: Product): void {

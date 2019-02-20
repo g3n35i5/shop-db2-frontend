@@ -27,7 +27,11 @@
       <div *ngIf="!cartIsEmpty()">
         <!--List all cart products-->
         <mat-list>
-          <app-product-item *ngFor="let item of cart" [product]="item.product"></app-product-item>
+          <app-product-item
+            *ngFor="let item of cart"
+            [product]="item.product"
+            [hideImageOnSmallScreens]="true">
+          </app-product-item>
 
           <!-- Show the basket sum. -->
           <mat-list-item class="basketSum">

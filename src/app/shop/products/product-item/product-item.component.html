@@ -1,5 +1,5 @@
 <mat-list-item>
-  <img matListAvatar [src]="imageURL(product)">
+  <img matListAvatar [src]="imageURL(product)" fxShow [fxHide.lt-lg]="hideImageOnSmallScreens">
   <h3 matLine>{{ product.name }}</h3>
   <p matLine>{{product.price | customCurrency | currency: 'EUR'}}</p>
   <!-- Fill remaining space, move content right. -->
