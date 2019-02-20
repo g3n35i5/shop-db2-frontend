@@ -56,10 +56,14 @@ export class LoginComponent implements OnInit {
     const sortedUsers: SortedUsers[] = [];
     for (const user of this.users) {
       let key;
+      const firstname = user.firstname;
+      const lastname = user.lastname;
       if (this.sortByLastname) {
-        key = user.lastname.charAt(0).toUpperCase();
+        key = lastname.charAt(0).toUpperCase();
       } else {
-        key = user.firstname.charAt(0).toUpperCase();
+        // It is possible that a user's firstname is empty.
+        // For this reason, it may still be necessary to sort by lastname.
+        key = firstname ? firstname.charAt(0).toUpperCase() : lastname.charAt(0).toUpperCase();
       }
 
       const item = sortedUsers.find(s => s.key === key);
@@ -73,11 +77,7 @@ export class LoginComponent implements OnInit {
       const keys = sortedUsers.map(s => s.key);
       for (const _key of keys) {
         const copied = sortedUsers.find(s => s.key === _key);
-        if (this.sortByLastname) {
-          copied.users.sort((a, b) => a.lastname.localeCompare(b.lastname));
-        } else {
-          copied.users.sort((a, b) => a.firstname.localeCompare(b.firstname));
-        }
+        copied.users.sort(this._userSortFn(this.sortByLastname));
       }
 
       sortedUsers.sort((a, b) => (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0));
@@ -87,5 +87,27 @@ export class LoginComponent implements OnInit {
 
   getRankName(user: User): string {
     return this.ranks.find(r => r.id === user.rank_id).name;
+  }
+
+  _userSortFn(sortByLastName: boolean) {
+    return (user1: User, user2: User) => {
+      let k1, k2;
+      if (sortByLastName) {
+        k1 = user1.lastname;
+        k2 = user2.lastname;
+      } else {
+        k1 = user1.firstname;
+        k2 = user2.firstname;
+      }
+      if (k1 === null) {
+        return 1;
+      } else if (k2 === null) {
+        return -1;
+      } else if (k1 === k2) {
+        return 0;
+      } else  {
+        return k1 < k2 ? -1 : 1;
+      }
+    };
   }
 }
