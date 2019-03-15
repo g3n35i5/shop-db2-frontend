@@ -1,8 +1,9 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span routerLink="/">shop.db</span>
-    <span class="fill-remaining-space"></span>
-    <span *ngIf="loaded" fxShow fxHide.gt-sm="true">
+<div #spacer>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span routerLink="/">shop.db</span>
+      <span class="fill-remaining-space"></span>
+      <span *ngIf="loaded" fxShow fxHide.gt-sm="true">
       <mat-icon class="toolbar-icon">person</mat-icon>
       <span class="toolbar-username">{{getUsername()}}</span>
       <span>{{ user.credit | customCurrency | currency: 'EUR' }}</span>
@@ -11,19 +12,20 @@
       </button>
     </span>
 
-  </mat-toolbar-row>
-  <mat-toolbar-row *ngIf="loaded" fxShow fxHide.gt-sm="true">
-    <mat-icon
-      [matBadgeHidden]="cartIsEmpty()"
-      [matBadge]="numberOfCartItems()"
-      matBadgeColor="warn">
-      shopping_cart
-    </mat-icon>
-    <span class="fill-remaining-space"></span>
-    <button mat-flat-button color="accent" [disabled]="disableBuyButton()" (click)="submitCart()">Buy</button>
-    <button mat-button [disabled]="cartIsEmpty()" (click)="deleteCart()">Delete</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="loaded" fxShow fxHide.gt-sm="true">
+      <mat-icon
+        [matBadgeHidden]="cartIsEmpty()"
+        [matBadge]="numberOfCartItems()"
+        matBadgeColor="warn">
+        shopping_cart
+      </mat-icon>
+      <span class="fill-remaining-space"></span>
+      <button mat-flat-button color="accent" [disabled]="disableBuyButton()" (click)="submitCart()">Buy</button>
+      <button mat-button [disabled]="cartIsEmpty()" (click)="deleteCart()">Delete</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
 
 <div class="container">
   <div fxLayout fxLayoutGap="1rem">

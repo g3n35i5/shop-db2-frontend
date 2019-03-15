@@ -44,8 +44,9 @@ export class DataService {
     }));
   }
 
-  public getPurchases(): Observable<Purchase[]> {
-    return this.getData('purchases').pipe(map(result => {
+  public getPurchases(limit?: number): Observable<Purchase[]> {
+    const url = 'purchases' + (limit ? '?limit=' + limit.toString() : '');
+    return this.getData(url).pipe(map(result => {
       return result['purchases'];
     }));
   }

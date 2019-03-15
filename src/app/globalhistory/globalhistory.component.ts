@@ -18,11 +18,14 @@ export class GlobalhistoryComponent implements OnInit {
   public loading: boolean;
   public showTable: boolean;
   public purchases: Purchase[];
-  public products: Product[];
-  public users: User[];
+  private products: Product[];
+  private productMap: Map<number, Product> = new Map();
+  private users: User[];
+  private userMap: Map<number, User> = new Map();
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
+  private maxPurchases = 200;
   displayedColumns: string[] = ['id', 'timestamp', 'name', 'product'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -48,7 +51,7 @@ export class GlobalhistoryComponent implements OnInit {
   /** Load all necessary data from the backend. */
   loadData() {
     const users = this.dataService.getUsers();
-    const purchases = this.dataService.getPurchases();
+    const purchases = this.dataService.getPurchases(this.maxPurchases);
     const products = this.dataService.getProducts();
     forkJoin([users, purchases, products]).subscribe(results => {
       this.users = results[0];
@@ -61,10 +64,12 @@ export class GlobalhistoryComponent implements OnInit {
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     if (this.purchases.length > 0) {
-      for (const purchase of this.purchases) {
-        purchase.user = this.users.find(u => u.id === purchase.user_id);
-        purchase.product = this.products.find(p => p.id === purchase.product_id);
-      }
+      this.users.forEach(user => {
+        this.userMap.set(user.id, user);
+      });
+      this.products.forEach(product => {
+        this.productMap.set(product.id, product);
+      });
       this.dataSource = new MatTableDataSource(this.purchases);
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);

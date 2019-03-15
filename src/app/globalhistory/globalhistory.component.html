@@ -34,14 +34,16 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let purchase">
-              {{getUsername(purchase.user)}}
+              {{getUsername(userMap.get(purchase.user_id))}}
             </td>
           </ng-container>
 
           <!-- Product Column -->
           <ng-container matColumnDef="product">
             <th mat-header-cell *matHeaderCellDef> Product </th>
-            <td mat-cell *matCellDef="let purchase"> {{purchase.product.name}} </td>
+            <td mat-cell *matCellDef="let purchase">
+              {{productMap.get(purchase.product_id).name}}
+            </td>
           </ng-container>
 
           <!-- Timestamp Column -->

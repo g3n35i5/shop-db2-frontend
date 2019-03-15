@@ -17,12 +17,12 @@
 
 <app-loading *ngIf="loading"></app-loading>
 
-<div class="container" *ngIf="!loading">
+<div class="container" *ngIf="!loading" id="top">
   <mat-card>
     <mat-card-content>
       <div fxLayout="row" fxLayoutAlign="center center" >
         <div fxFlex.gt-md="50%" fxFlex.gt-sm="75%" fxFlex="100">
-          <div class="pagination-wrapper" id="top">
+          <div class="pagination-wrapper">
             <mat-chip-list>
               <div *ngFor="let group of sortedUsers">
                 <mat-chip
