@@ -56,6 +56,9 @@ export class ShopService {
   }
 
   private publishShop(): void {
+    // Only products that are active should be displayed in the frontend.
+    this.products = this.products.filter(p => p.active);
+    // Publish the shop subject.
     this.shopSubject.next({
       loaded: true,
       user: this.user,
@@ -187,6 +190,9 @@ export class ShopService {
     return this.creditAfterPurchase() < this.getDebtLimit();
   }
 
+  /**
+   * Indicates whether to prevent the purchase of a specific product.
+   */
   disableAddToCart(product: Product): boolean {
     return (this.creditAfterPurchase() - product.price < this.getDebtLimit());
   }
