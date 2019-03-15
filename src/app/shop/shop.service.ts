@@ -187,12 +187,6 @@ export class ShopService {
     return this.creditAfterPurchase() < this.getDebtLimit();
   }
 
-  /** Indicates whether to disable the buy button. **/
-  disableBuyButton() {
-    // return this.preventPurchase() || this.disableInput;
-    return false;
-  }
-
   disableAddToCart(product: Product): boolean {
     return (this.creditAfterPurchase() - product.price < this.getDebtLimit());
   }
