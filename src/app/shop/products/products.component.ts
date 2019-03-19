@@ -120,7 +120,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (filterValue === '') {
       this.resetSearch();
     } else {
-      this.filtered = this.products.filter(p => p.name.toLowerCase().indexOf(filterValue) === 0);
+      this.showFavorites = false;
+      this.filtered = this.products.filter(p => p.name.toLowerCase().includes(filterValue));
     }
   }
 }
