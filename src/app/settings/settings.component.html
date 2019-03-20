@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
-  <span routerLink="/">shop.db</span>
-  <span class="fill-remaining-space"></span>
+  <a mat-button [routerLink]="['/']">
+    <mat-icon>arrow_back</mat-icon>Back to login
+  </a>
 </mat-toolbar>
 
 <div class="container">
@@ -8,6 +9,8 @@
     <mat-card-content>
       <div fxLayout="row" fxLayoutAlign="center center">
         <div fxFlex="50%" fxFlex.lt-md="100%">
+          <mat-card-title>Settings</mat-card-title>
+          <mat-card-subtitle>Customize shop.db to your needs.</mat-card-subtitle>
           <mat-list *ngFor="let item of settings">
             <mat-list-item>
               <h4 mat-line>{{ item.name }}</h4>

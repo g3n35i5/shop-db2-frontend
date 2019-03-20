@@ -1,5 +1,7 @@
 <mat-toolbar color="primary">
-  <span routerLink="/">shop.db</span>
+  <a mat-button [routerLink]="['/']">
+    <mat-icon>arrow_back</mat-icon>Back to login
+  </a>
 </mat-toolbar>
 <app-loading *ngIf="loading"></app-loading>
 <div class="container" *ngIf="!loading">
@@ -10,12 +12,6 @@
     <mat-card-content>
       <div *ngIf="showTable">
         <div fxLayout="row">
-          <div>
-            <button mat-button (click)="goBackToLogin()">
-              <mat-icon>arrow_back</mat-icon>
-              Back to login
-            </button>
-          </div>
           <span class="fill-remaining-space"></span>
           <div>
             <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
