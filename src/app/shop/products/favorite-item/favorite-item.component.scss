@@ -6,12 +6,17 @@ mat-card {
   text-align: center !important;
 }
 
-mat-card > mat-card-title {
-  font-size: 1rem;
-  text-wrap: none;
-  min-height: 3rem;
-}
-
 mat-card > img {
   width: 100% !important;
+}
+
+.title {
+  font-size: 1rem;
+  padding-bottom: 2rem;
+  max-height: 1rem;
+}
+
+.price {
+  font-size: 1.5rem;
+}
 }

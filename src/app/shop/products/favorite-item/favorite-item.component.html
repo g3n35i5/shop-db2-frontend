@@ -1,12 +1,10 @@
 <mat-card>
   <!-- Show the product name. -->
-  <mat-card-title>{{product.name}}</mat-card-title>
+  <div class="title">{{product.name}}</div>
   <!-- Show the product image. -->
   <img mat-card-image [src]="imageURL(product)">
   <!-- Show the product price. -->
-  <mat-card-title>
-    {{product.price | customCurrency | currency: 'EUR'}}
-  </mat-card-title>
+  <div class="price">{{product.price | customCurrency | currency: 'EUR'}}</div>
   <mat-card-actions>
     <div class="addProductButtons">
       <!-- Decrease product count in cart by 1. -->
