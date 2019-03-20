@@ -43,9 +43,13 @@
             <!-- Display the account balance that will be created when the
                  purchase is executed. -->
             <mat-list-item class="basketSum">
-              <h3 matLine>New balance</h3>
-              <span class="fill-remaining-space"></span>
-              {{creditAfterPurchase() | customCurrency | currency: 'EUR'}}
+              <h3 matLine>
+                <span style="float: left !important;">New balance</span>
+                <span class="fill-remaining-space"></span>
+                <span style="float: right !important;">
+                  {{creditAfterPurchase() | customCurrency | currency: 'EUR'}}
+                </span>
+              </h3>
             </mat-list-item>
           </mat-list>
         </div>
