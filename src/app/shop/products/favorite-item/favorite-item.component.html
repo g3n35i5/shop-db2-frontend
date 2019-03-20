@@ -8,16 +8,16 @@
   <mat-card-actions>
     <div class="addProductButtons">
       <!-- Decrease product count in cart by 1. -->
-      <button mat-icon-button [disabled]="productCountInCart(product) === 0" (click)="removeFromCart(product)">
-        <mat-icon>remove</mat-icon>
+      <button mat-icon-button class="big-button" [disabled]="productCountInCart(product) === 0" (click)="removeFromCart(product)">
+        <mat-icon class="big-icon">remove</mat-icon>
       </button>
       <!-- Show the product count in the cart. -->
-      <mat-chip-list>
+      <mat-chip-list class="item-count-chip">
         <mat-chip>{{productCountInCart(product)}}</mat-chip>
       </mat-chip-list>
       <!-- Increase product count in cart by 1. -->
-      <button mat-icon-button [disabled]="disableAddToCart(product)" (click)="addToCart(product)">
-        <mat-icon>add</mat-icon>
+      <button mat-icon-button class="big-button" [disabled]="disableAddToCart(product)" (click)="addToCart(product)">
+        <mat-icon class="big-icon">add</mat-icon>
       </button>
     </div>
   </mat-card-actions>

@@ -19,4 +19,19 @@ mat-card > img {
 .price {
   font-size: 1.5rem;
 }
+
+.big-button {
+  height: 3rem !important;
+  width: 3rem !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.big-icon {
+  font-size: 2rem !important;
+  padding-left: 0.5rem !important;
+}
+
+.item-count-chip {
+  padding-top: 8px;
 }
