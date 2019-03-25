@@ -40,11 +40,8 @@
             <div class="mat-elevation-z1" matRipple *ngFor="let user of group.users">
               <a mat-list-item [routerLink]="['/shop', user.id]" class="userlink">
                 <mat-icon mat-list-icon>person</mat-icon>
-                <h4 mat-line *ngIf="sortByLastname">
-                  {{user.firstname ? [user.lastname, user.firstname].join(', ') : user.lastname}}
-                </h4>
-                <h4 mat-line *ngIf="!sortByLastname">
-                  {{user.firstname}} {{user.lastname}}
+                <h4 mat-line>
+                  {{dataService.getUsername(user, sortByLastname)}}
                 </h4>
                 <p mat-line class="muted"> {{ getRankName(user) }} </p>
               </a>
