@@ -123,6 +123,10 @@ export class ShopService {
     return this.dataService.getUsername(this.user);
   }
 
+  getUsernameUmlautFree(): string {
+    return this.dataService.replaceUmlauts(this.getUsername());
+  }
+
   /**
    * Delete all items in the shopping cart.
    */

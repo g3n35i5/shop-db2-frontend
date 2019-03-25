@@ -52,12 +52,8 @@ export class CartComponent implements OnInit {
     this.shopService.submitCart();
   }
 
-  preventPurchase(): boolean {
-    return this.shopService.preventPurchase();
-  }
-
-  getDebtLimit(): number {
-    return this.shopService.getDebtLimit();
+  getAvatarString(): string {
+    return this.shopService.getUsernameUmlautFree();
   }
 
   getUsername(): string {

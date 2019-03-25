@@ -18,12 +18,43 @@ export class DataService {
 
   apiURL = environment.apiURL;
 
+  umlautMap = {
+    '\u00dc': 'UE',
+    '\u00c4': 'AE',
+    '\u00d6': 'OE',
+    '\u00fc': 'ue',
+    '\u00e4': 'ae',
+    '\u00f6': 'oe',
+    '\u00df': 'ss',
+  };
+
   constructor(
     public http: HttpClient
-  ) { }
+  ) {
+  }
 
-  public getUsername(user: User): string {
-    return [user.firstname, user.lastname].join(' ');
+  /**
+   * This function replaces German umlauts with their international representation.
+   * @param input is the input string with umlauts.
+   */
+  public replaceUmlauts(input) {
+    return input
+      .replace(/[\u00dc|\u00c4|\u00d6][a-z]/g, (a) => {
+        const big = this.umlautMap[a.slice(0, 1)];
+        return big.charAt(0) + big.charAt(1).toLowerCase() + a.slice(1);
+      })
+      .replace(new RegExp('[' + Object.keys(this.umlautMap).join('|') + ']', 'g'),
+        (a) => this.umlautMap[a]
+      );
+  }
+
+  public getUsername(user: User, lastnameFirst = false): string {
+    if (lastnameFirst && user.firstname) {
+      return [user.lastname, user.firstname].join(', ');
+    } else if (lastnameFirst) {
+      return user.lastname;
+    }
+    return[user.firstname, user.lastname].join(' ');
   }
 
   public getUsers(): Observable<User[]> {
