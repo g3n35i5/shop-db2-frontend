@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { ShopComponent } from './shop/shop.component';
 import { UserhistoryComponent } from './userhistory/userhistory.component';
 import { GlobalhistoryComponent } from './globalhistory/globalhistory.component';
-import { OfflineComponent } from './offline/offline.component';
 import { RegisterComponent } from './register/register.component';
+import { MessageComponent } from './message/message.component';
 
 const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
@@ -16,10 +14,11 @@ const routes: Routes = [
   { path: 'shop/:id', component: ShopComponent },
   { path: 'globalhistory', component: GlobalhistoryComponent },
   { path: 'userhistory/:id', component: UserhistoryComponent },
-  { path: 'offline', component: OfflineComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'maintenance', component: MessageComponent, data: {case: 'maintenance'}, pathMatch: 'full' },
+  { path: 'offline', component: MessageComponent, data: {case: 'offline'}, pathMatch: 'full' },
+  { path: '**', component: MessageComponent, data: {case: 'pagenotfound'}, pathMatch: 'full' },
 ];
 
 @NgModule({

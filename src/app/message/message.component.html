@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span routerLink="/">shop.db</span>
+</mat-toolbar>
+
+<div class="center-card center-text">
+  <h1 class="mat-h1">{{ message.title }}</h1>
+  <mat-icon mat-list-icon *ngIf="message.icon">{{ message.icon }}</mat-icon>
+  <p class="mat-body-1">{{ message.message }}</p>
+  <button
+    [disabled]="loading"
+    mat-flat-button color="primary"
+    (click)="retry()"
+    *ngIf="message.showRetryButton">
+    {{ buttonText() }}
+  </button>
+</div>

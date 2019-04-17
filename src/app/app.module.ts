@@ -17,7 +17,6 @@ import { MaterialModule } from './material/material.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ShopComponent } from './shop/shop.component';
 import { CartComponent } from './shop/cart/cart.component';
@@ -30,9 +29,9 @@ import { PurchasesComponent } from './userhistory/purchases/purchases.component'
 import { RefundsComponent } from './userhistory/refunds/refunds.component';
 import { CreditwarningComponent } from './shop/dialogs/creditwarning/creditwarning.component';
 import { GlobalhistoryComponent } from './globalhistory/globalhistory.component';
-import { OfflineComponent } from './offline/offline.component';
 import { RegisterComponent } from './register/register.component';
 import { InterceptorComponent } from './services/interceptor/interceptor.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +40,6 @@ import { InterceptorComponent } from './services/interceptor/interceptor.compone
     AppComponent,
     SettingsComponent,
     LoginComponent,
-    PageNotFoundComponent,
     LoadingComponent,
     ShopComponent,
     CartComponent,
@@ -54,8 +52,8 @@ import { InterceptorComponent } from './services/interceptor/interceptor.compone
     RefundsComponent,
     CreditwarningComponent,
     GlobalhistoryComponent,
-    OfflineComponent,
-    RegisterComponent
+    RegisterComponent,
+    MessageComponent
   ],
   imports: [
     AvatarModule.forRoot(),

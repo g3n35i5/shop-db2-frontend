@@ -26,15 +26,19 @@ export class InterceptorComponent implements HttpInterceptor {
           /** Only those answers are to be opened as snackbar which also
            have a message in their body. */
           if (event.body.hasOwnProperty('message')) {
-            this.snackbar.openSnackBar(event['body']['message']);
+            const message = event['body']['message'];
+            if (message !== 'Backend is online.') {
+              this.snackbar.openSnackBar(message);
+            }
           }
         }
       }, error => {
         /** If the backend is not available, you should redirect
-         to the offline page. */
+         to the corresponding page. */
         if (error.status === 504) {
           this.router.navigate(['/offline']);
-          /** Open a snackbar with the error message.*/
+        } else if (error.status === 503) {
+          this.router.navigate(['/maintenance']);
         } else {
           this.snackbar.openSnackBar(event['body']['message']);
         }
