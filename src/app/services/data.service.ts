@@ -131,7 +131,7 @@ export class DataService {
   }
 
   public backendOnline() {
-    return this.getData('');
+    return this.http.get(this.apiURL);
   }
 
   private getData(route) {

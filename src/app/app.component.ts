@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 import { SettingsService } from './settings/settings.service';
-import {BinarySettingsItem} from './interfaces/binarysettingsitem';
+import { DataService } from './services/data.service';
+import { BinarySettingsItem } from './interfaces/binarysettingsitem';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   private settingsSubscription: Subscription;
 
   constructor(
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private dataService: DataService
   ) {
 
     const useDarkTheme = this.settingsService.getStateByID('useDarkTheme');
@@ -23,6 +25,11 @@ export class AppComponent {
       .subscribe((item: BinarySettingsItem) => {
         this.checkForDarkTheme(item);
       });
+
+    // Each 10 seconds, check the backend online status.
+    interval(10000).subscribe(() => {
+      this.dataService.backendOnline().subscribe();
+    });
   }
 
   /**
