@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
+  public disableInput: boolean;
+
   /*
    * Parameters for the form.
    */
@@ -69,6 +71,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.disableInput = false;
   }
 
   /*
@@ -86,6 +89,7 @@ export class RegisterComponent implements OnInit {
       this.snackbar.openSnackBar('Form is invalid');
       return;
     }
+    this.disableInput = true;
     const data = {};
     for (const key in this.registerForm.value) {
       if (this.registerForm.value.hasOwnProperty(key)) {
@@ -96,9 +100,11 @@ export class RegisterComponent implements OnInit {
     }
     this.dataService.registerUser(data).subscribe(() => {
       this.snackbar.openSnackBar('The registration was successful. ' +
-        'Please wait until your account has been activated by an ' +
+        'Please wait until your account has been activated by an w' +
         'administrator.');
       this.close();
+    }, () => {
+      this.disableInput = false;
     });
   }
 
