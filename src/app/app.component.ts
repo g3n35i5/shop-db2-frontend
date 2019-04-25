@@ -3,6 +3,7 @@ import { Subscription, interval } from 'rxjs';
 import { SettingsService } from './settings/settings.service';
 import { DataService } from './services/data.service';
 import { BinarySettingsItem } from './interfaces/binarysettingsitem';
+import { toggleFullScreen, isFullScreen } from './interfaces/fullscreen';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent {
     this.settingsSubscription = this.settingsService.BinarySettingsItemState
       .subscribe((item: BinarySettingsItem) => {
         this.checkForDarkTheme(item);
+        this.checkForFullscreen(item);
       });
 
     // Each 10 seconds, check the backend online status.
@@ -40,6 +42,19 @@ export class AppComponent {
   checkForDarkTheme(item: BinarySettingsItem): void {
     if (item.storageID === 'useDarkTheme') {
       this.useDarkTheme = item.state;
+    }
+  }
+
+  /**
+   * Each time a settings item gets changed this function evaluates, whether
+   * to toggle the fullscreen mode.
+   * @param item is the settings item.
+   */
+  checkForFullscreen(item: BinarySettingsItem): void {
+    if (item.storageID === 'fullscreen') {
+      if (item.state !== isFullScreen()) {
+        toggleFullScreen();
+      }
     }
   }
 }

@@ -4,4 +4,5 @@ export interface BinarySettingsItem {
   description: string;
   state: boolean;
   default: boolean;
+  icon: string;
 }

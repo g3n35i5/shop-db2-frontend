@@ -17,21 +17,32 @@ export class SettingsService {
         description: 'Choose if you want to go back to the start page after ' +
           'a purchase or if you prefer to stay in the shop.',
         state: null,
-        default: true
+        default: true,
+        icon: 'keyboard_backspace'
       },
       {
         storageID: 'sortByLastname',
         name: 'Sort users by lastname',
         description: 'Select whether you want to sort users by their lastname.',
         state: null,
-        default: false
+        default: false,
+        icon: 'sort'
       },
       {
         storageID: 'useDarkTheme',
         name: 'Use dark theme',
         description: 'Choose if you want to use the dark theme.',
         state: null,
-        default: true
+        default: true,
+        icon: 'invert_colors'
+      },
+      {
+        storageID: 'fullscreen',
+        name: 'Fullscreen',
+        description: 'Choose if you want to run shop-db2 in fullscreen mode.',
+        state: null,
+        default: true,
+        icon: 'fullscreen'
       }
     ];
 
