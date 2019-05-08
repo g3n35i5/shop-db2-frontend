@@ -98,6 +98,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Checks whether any product assigned to the given tag is new.
+   */
+  tagHasNewProduct(tag: Tag): boolean {
+    const that = this;
+    return this.products.filter(
+      product => product.tags.indexOf(tag.id) >= 0)
+      .some(function(product) {
+        return that.shopService.productIsNew(product);
+    });
+  }
+
+  /**
    * A boolean which indicates whether to show the reset search button.
    */
   showResetSearchButton(): boolean {

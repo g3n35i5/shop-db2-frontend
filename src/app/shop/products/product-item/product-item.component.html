@@ -1,8 +1,13 @@
 <mat-list-item>
   <img matListAvatar [src]="imageURL(product)" fxShow [fxHide.lt-lg]="hideImageOnSmallScreens">
-  <h3 matLine>{{ product.name }}</h3>
+
+  <h3 matLine>
+    {{ product.name }}
+    <mat-chip color="primary" *ngIf="productIsNew(product)" selected>new</mat-chip>
+  </h3>
   <p matLine>{{product.price | customCurrency | currency: 'EUR'}}</p>
   <!-- Fill remaining space, move content right. -->
+
   <span class="fill-remaining-space"></span>
   <div class="addProductButtons">
     <!-- Decrease product count in cart by 1. -->

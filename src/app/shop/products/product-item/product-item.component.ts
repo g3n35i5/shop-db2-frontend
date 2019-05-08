@@ -32,4 +32,8 @@ export class ProductItemComponent {
   disableAddToCart(product: Product): boolean {
     return this.shopService.disableAddToCart(product);
   }
+
+  productIsNew(product: Product): boolean {
+    return this.shopService.productIsNew(product);
+  }
 }

@@ -8,4 +8,5 @@ export interface Product {
   revocable?: boolean;
   imagename: string;
   tags: number[];
+  creation_date: Date;
 }

@@ -9,7 +9,13 @@
               <mat-icon class="chipIcon">favorite</mat-icon>
               Favorites
             </mat-chip>
-            <mat-chip *ngFor="let tag of tags" (click)="filterProducts(tag)">{{tag.name}}</mat-chip>
+            <mat-chip
+              class="allow-overflow"
+              *ngFor="let tag of tags"
+              matBadge="!"
+              [matBadgeHidden]="!tagHasNewProduct(tag)"
+              (click)="filterProducts(tag)">{{tag.name}}
+            </mat-chip>
           </mat-chip-list>
         </div>
         <div>

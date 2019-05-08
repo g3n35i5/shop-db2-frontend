@@ -219,4 +219,16 @@ export class ShopService {
   numberOfCartItems(): number {
     return this.cart.map(i => i.count).reduce((a, b) => a + b, 0);
   }
+
+  /**
+   * Returns whether the given product is not older than a given number
+   * of days (currently one week).
+   */
+  productIsNew(product: Product): boolean {
+    const now = new Date();
+    const productCreationDate = new Date(product.creation_date);
+    const difference = Math.abs(now.getTime() - productCreationDate.getTime());
+    const productAgeInDays = Math.ceil(difference / (1000 * 3600 * 24));
+    return productAgeInDays <= 7;
+  }
 }
