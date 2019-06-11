@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { CreditwarningComponent } from './dialogs/creditwarning/creditwarning.component';
 import { ShopService } from './shop.service';
 import { Subscription } from 'rxjs';

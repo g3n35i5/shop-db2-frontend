@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../../services/data.service';
 import { forkJoin } from 'rxjs';
 import { CustomTimestamp } from '../../filters';
@@ -27,8 +29,8 @@ export class PurchasesComponent implements OnInit {
   public numItems = 10;
   displayedColumns: string[] = ['id', 'product', 'timestamp', 'amount',
     'productprice', 'price', 'revoke'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 
 

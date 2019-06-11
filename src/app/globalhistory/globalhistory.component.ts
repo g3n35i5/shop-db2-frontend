@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -27,8 +29,8 @@ export class GlobalhistoryComponent implements OnInit {
   public numItems = 10;
   private maxPurchases = 200;
   displayedColumns: string[] = ['id', 'timestamp', 'name', 'amount', 'product'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private dataService: DataService,

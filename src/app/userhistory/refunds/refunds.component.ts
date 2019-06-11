@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../../services/data.service';
 import { forkJoin } from 'rxjs';
 import { User } from '../../interfaces/user';
@@ -24,8 +26,8 @@ export class RefundsComponent implements OnInit {
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
   displayedColumns: string[] = ['id', 'total_price', 'admin', 'comment', 'timestamp'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private dataService: DataService
