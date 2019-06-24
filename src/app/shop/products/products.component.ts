@@ -81,7 +81,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const trimmedFavorites = this.favorites.slice(0, Math.min(...[10, this.favorites.length]));
     this.filtered = [];
     trimmedFavorites.forEach(id => {
-      this.filtered.push(this.products.find(p => p.id === id));
+      const product = this.products.find(p => p.id === id);
+      if (product) {
+        this.filtered.push(product);
+      }
     });
   }
 
