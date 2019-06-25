@@ -7,6 +7,7 @@ import { UserhistoryComponent } from './userhistory/userhistory.component';
 import { GlobalhistoryComponent } from './globalhistory/globalhistory.component';
 import { RegisterComponent } from './register/register.component';
 import { MessageComponent } from './message/message.component';
+import { UserstatisticsComponent } from './userstatistics/userstatistics.component';
 
 const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'shop/:id', component: ShopComponent },
   { path: 'globalhistory', component: GlobalhistoryComponent },
   { path: 'userhistory/:id', component: UserhistoryComponent },
+  { path: 'statistics/user/:id', component: UserstatisticsComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'maintenance', component: MessageComponent, data: {case: 'maintenance'}, pathMatch: 'full' },

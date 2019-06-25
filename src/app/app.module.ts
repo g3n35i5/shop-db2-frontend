@@ -32,6 +32,7 @@ import { GlobalhistoryComponent } from './globalhistory/globalhistory.component'
 import { RegisterComponent } from './register/register.component';
 import { InterceptorComponent } from './services/interceptor/interceptor.component';
 import { MessageComponent } from './message/message.component';
+import { UserstatisticsComponent } from './userstatistics/userstatistics.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MessageComponent } from './message/message.component';
     CreditwarningComponent,
     GlobalhistoryComponent,
     RegisterComponent,
-    MessageComponent
+    MessageComponent,
+    UserstatisticsComponent
   ],
   imports: [
     AvatarModule.forRoot(),
