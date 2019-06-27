@@ -29,8 +29,8 @@ export class GlobalhistoryComponent implements OnInit {
   public numItems = 10;
   private maxPurchases = 200;
   displayedColumns: string[] = ['id', 'timestamp', 'name', 'amount', 'product'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     private dataService: DataService,

@@ -29,8 +29,8 @@ export class PurchasesComponent implements OnInit {
   public numItems = 10;
   displayedColumns: string[] = ['id', 'product', 'timestamp', 'amount',
     'productprice', 'price', 'revoke'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
 
 
