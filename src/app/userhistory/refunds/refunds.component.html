@@ -22,10 +22,10 @@
       </ng-container>
 
       <!-- Amount Column -->
-      <ng-container matColumnDef="amount">
+      <ng-container matColumnDef="total_price">
         <th mat-header-cell *matHeaderCellDef> Amount</th>
         <td mat-cell *matCellDef="let refund">
-          {{refund.amount | customCurrency | currency: 'EUR'}}
+          {{refund.total_price | customCurrency | currency: 'EUR'}}
         </td>
       </ng-container>
 
