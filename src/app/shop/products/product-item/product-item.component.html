@@ -1,5 +1,5 @@
 <mat-list-item>
-  <img matListAvatar [src]="imageURL(product)" fxShow [fxHide.lt-lg]="hideImageOnSmallScreens">
+  <img matListAvatar [src]="imageURL(product)" fxShow [fxHide.lt-lg]="hideImageOnSmallScreens" [class]="disableAddToCart(product) ? 'black-white-image' : ''">
 
   <h3 matLine>
     {{ product.name }}

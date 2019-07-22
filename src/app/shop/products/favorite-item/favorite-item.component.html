@@ -2,7 +2,7 @@
   <!-- Show the product name. -->
   <div class="title">{{product.name}}</div>
   <!-- Show the product image. -->
-  <img mat-card-image [src]="imageURL(product)">
+  <img mat-card-image [src]="imageURL(product)" [class]="disableAddToCart(product) ? 'black-white-image' : ''">
   <!-- Show the product price. -->
   <div class="price">{{product.price | customCurrency | currency: 'EUR'}}</div>
 </mat-card>

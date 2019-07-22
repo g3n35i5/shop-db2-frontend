@@ -93,6 +93,9 @@ export class ShopService {
   addProduct(product: Product) {
     this.cartSubject.next({disableInput: true, cart: this.cart});
     const item: CartItem = this.cart.find(c => c.product === product);
+    if (this.disableAddToCart(product)) {
+      return;
+    }
     if (!item) {
       this.cart.push({product: product, count: 1});
     } else {

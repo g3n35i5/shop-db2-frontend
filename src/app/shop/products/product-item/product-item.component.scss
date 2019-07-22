@@ -11,3 +11,8 @@ mat-list-item img {
   width: 90px !important;
   border-radius: unset !important;
 }
+
+.black-white-image{
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
