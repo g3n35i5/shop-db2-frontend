@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 import { CustomCurrency } from './filters';
 import { CustomTimestamp } from './filters';
@@ -33,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
 import { InterceptorComponent } from './services/interceptor/interceptor.component';
 import { MessageComponent } from './message/message.component';
 import { UserstatisticsComponent } from './userstatistics/userstatistics.component';
+import { ChartComponent } from './userstatistics/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import { UserstatisticsComponent } from './userstatistics/userstatistics.compone
     GlobalhistoryComponent,
     RegisterComponent,
     MessageComponent,
-    UserstatisticsComponent
+    UserstatisticsComponent,
+    ChartComponent
   ],
   imports: [
     AvatarModule.forRoot(),
@@ -68,7 +72,8 @@ import { UserstatisticsComponent } from './userstatistics/userstatistics.compone
     HttpClientModule,
     FormsModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ],
   providers: [
     {

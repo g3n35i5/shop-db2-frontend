@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Warning</h1>
 <div class="mat-typography">
 
-  <mat-dialog-content class="centerText">
+  <div mat-dialog-content class="centerText">
     <div *ngIf="canStillShop()">
       <p>
         Your balance's gone negative. Please note that you may have a maximum of
@@ -24,10 +24,10 @@
         Please pay back your debt so you can buy something again.
       </p>
     </div>
-  </mat-dialog-content>
+  </div>
 </div>
 
-<mat-dialog-actions align="end">
+<div mat-dialog-actions align="end">
   <div *ngIf="canStillShop()">
     <button mat-button color="primary" (click)="goHome()">Go home</button>
     <button [disabled]="disableClose()" mat-button color="primary" matDialogClose>Dismiss</button>
@@ -35,4 +35,4 @@
   <div *ngIf="!canStillShop()">
     <button mat-button color="primary" (click)="goHome()">Go home</button>
   </div>
-</mat-dialog-actions>
+</div>

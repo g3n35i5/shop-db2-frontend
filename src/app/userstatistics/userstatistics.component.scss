@@ -1,0 +1,13 @@
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tile {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

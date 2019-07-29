@@ -8,6 +8,12 @@
   $dark-warn:    mat-palette($mat-deep-orange);
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
+  .ngx-charts, text { fill: #e0e0e0; }
+
+}
+
+.ngx-charts {
+  float: none !important; // Remove margin under chart
 }
 
 body {
