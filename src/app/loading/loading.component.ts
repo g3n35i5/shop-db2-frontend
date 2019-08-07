@@ -22,6 +22,11 @@ export class LoadingComponent implements OnInit {
 
   /** Go home **/
   goHome() {
-    this.router.navigate(['/']);
+    /*
+      Workaround for redirecting to the / page when you're already there.
+     */
+    this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/']);
+    });
   }
 }
