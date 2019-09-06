@@ -1,13 +1,14 @@
-
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .tile {
-  width: 600px;
+  min-width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.marginContent {
+  margin: 0 16px;
+}
+
+mat-form-field {
+  margin-right: 12px;
 }
