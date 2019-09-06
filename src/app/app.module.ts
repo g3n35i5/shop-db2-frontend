@@ -9,7 +9,6 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-
 import { CustomCurrency } from './filters';
 import { CustomTimestamp } from './filters';
 

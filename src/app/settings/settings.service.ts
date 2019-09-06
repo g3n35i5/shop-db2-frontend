@@ -49,6 +49,7 @@ export class SettingsService {
     /** Set all initial states. **/
     for (const item of this.settings) {
       item.state = this.getState(item);
+      this.setState(item);
     }
   }
 
@@ -67,8 +68,15 @@ export class SettingsService {
    * @param id is the settings identifier.
    */
   public getStateByID(id: string): boolean {
-    const item = this.settings.find(s => s.storageID === id);
-    return this.getState(item);
+    return this.getState(this.getItemByID(id));
+  }
+
+  /**
+   * Returns the full settings item by ID
+   * @param id is the settings identifier.
+   */
+  public getItemByID(id: string): BinarySettingsItem {
+    return this.settings.find(s => s.storageID === id);
   }
 
   /**
@@ -80,7 +88,7 @@ export class SettingsService {
   public getState(item: BinarySettingsItem): boolean {
     const DEFAULT = item.default;
     const result = JSON.parse(localStorage.getItem(item.storageID));
-    return typeof result !== null ? result : DEFAULT;
+    return result !== null ? result : DEFAULT;
   }
 
   /**
@@ -89,7 +97,7 @@ export class SettingsService {
    * @param item is the item which value has to be stored.
    */
   public setState(item: BinarySettingsItem): void {
+    localStorage.setItem(item.storageID, this.getState(item).toString());
     this.settingsSubject.next(<BinarySettingsItem>item);
-    localStorage.setItem(item.storageID, item.state.toString());
   }
 }
