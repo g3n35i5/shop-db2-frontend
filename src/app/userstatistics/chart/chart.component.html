@@ -4,7 +4,7 @@
       {{ title }}
     </mat-card-title>
   </mat-card-header>
-  <mat-card-content class="chart" *ngIf="chartData.length > 0">
+  <mat-card-content class="chart">
     <ngx-charts-pie-chart
       *ngIf="chartType == 'pie'"
       [labels]="true"
@@ -19,7 +19,8 @@
       [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel"
       [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel">
+      [showYAxisLabel]="showYAxisLabel"
+      [showGridLines]="showGridLines">
     </ngx-charts-bar-vertical>
     <ngx-charts-line-chart
       *ngIf="chartType == 'line'"
@@ -30,7 +31,9 @@
       [yAxisLabel]="yAxisLabel"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
-      [curve]="curve">
+      [showGridLines]="showGridLines"
+      [curve]="curve"
+      timeline="true">
     </ngx-charts-line-chart>
   </mat-card-content>
 </mat-card>

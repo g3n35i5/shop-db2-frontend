@@ -7,7 +7,7 @@ export interface Purchase {
   product?: Product;
   user_id: number;
   user?: User;
-  timestamp: Date;
+  timestamp: string;
   amount: number;
   price: number;
   revoked: boolean;

@@ -17,17 +17,39 @@
         your purchases
       </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="marginContent">
+      <mat-form-field>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startDatepicker" placeholder="Start date"
+               [formControl]="startDatepickerCtl" (dateChange)="updateStats($event)">
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker" ></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="endDatepicker" placeholder="End date"
+               [formControl]="endDatepickerCtl" (dateChange)="updateStats($event)">
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker" ></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-card-subtitle>
+        In the selected period you made <strong>{{ filteredPurchases.length }}</strong> purchases
+      </mat-card-subtitle>
     </mat-card-content>
   </mat-card>
 
-  <!--<div class="list">
-    <div *ngFor="let card of cards" class="tile">
-      <app-chart [title]="card.title" [chartData]="card.data" [chartType]="card.type" class="card-item"></app-chart>
-    </div>
-  </div>-->
-  <div fxLayout="row" fxLayoutWrap fxLayoutGap="2rem" fxLayoutAlign="center">
-    <app-chart class="tile" *ngFor="let card of cards" [title]="card.title" [chartData]="card.data" [chartType]="card.type"></app-chart>
+  <div fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center" *ngIf="showCharts()">
+    <app-chart class="tile" *ngFor="let card of cards"
+               [title]="card.title"
+               [chartData]="card.data"
+               [chartType]="card.type"
+               [showXAxisLabel]="card.showXAxisLabel"
+               [showYAxisLabel]="card.showYAxisLabel"
+               [xAxisLabel]="card.xAxisLabel"
+               [yAxisLabel]="card.yAxisLabel"
+               [interpolation]="card.interpolation"></app-chart>
   </div>
-
+  <div class="center-card center-text" *ngIf="!showCharts()">
+    <p class="mat-body-2">There are no purchases in the selected period</p>
+    <mat-icon mat-list-icon>show_chart</mat-icon>
+  </div>
 </div>
