@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../../services/data.service';
 import { forkJoin } from 'rxjs';
 import { User } from '../../interfaces/user';
-import { Deposit } from '../../interfaces/deposit';
+import { Deposit } from '../../classes/deposit';
 
 @Component({
   selector: 'app-deposits',

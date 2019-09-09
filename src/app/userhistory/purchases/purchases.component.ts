@@ -4,10 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../../services/data.service';
 import { forkJoin } from 'rxjs';
-import { CustomTimestamp } from '../../filters';
 import { Product } from '../../interfaces/product';
 import { User } from '../../interfaces/user';
-import { Purchase } from '../../interfaces/purchase';
+import { Purchase } from '../../classes/purchase';
 
 @Component({
   selector: 'app-purchases',

@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { Purchase } from '../interfaces/purchase';
+import { Purchase } from '../classes/purchase';
 import { Product } from '../interfaces/product';
 import { User } from '../interfaces/user';
 

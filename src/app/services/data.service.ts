@@ -6,14 +6,29 @@ import { Product } from '../interfaces/product';
 import { map } from 'rxjs/operators';
 import { Rank } from '../interfaces/rank';
 import { Tag } from '../interfaces/tag';
-import { Purchase } from '../interfaces/purchase';
-import { Deposit } from '../interfaces/deposit';
-import { Refund } from '../interfaces/refund';
+import { Deposit } from '../classes/deposit';
+import { Refund } from '../classes/refund';
+import { Purchase } from '../classes/purchase';
 import { environment } from '../../environments/environment';
+import { plainToClass } from 'class-transformer';
+
+export interface PurchaseResponse {
+  purchases: object[];
+}
+
+export interface DepositResponse {
+  deposits: object[];
+}
+
+export interface RefundResponse {
+  refunds: object[];
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
 
   apiURL = environment.apiURL;
@@ -101,20 +116,20 @@ export class DataService {
   }
 
   public getUserPurchases(id: number): Observable<Purchase[]> {
-    return this.getData('users/' + String(id) + '/purchases').pipe(map(result => {
-      return result['purchases'];
+    return this.getData('users/' + String(id) + '/purchases').pipe(map((result: PurchaseResponse) => {
+      return plainToClass(Purchase, result['purchases']);
     }));
   }
 
   public getUserDeposits(id: number): Observable<Deposit[]> {
-    return this.getData('users/' + String(id) + '/deposits').pipe(map(result => {
-      return result['deposits'];
+    return this.getData('users/' + String(id) + '/deposits').pipe(map((result: DepositResponse) => {
+      return plainToClass(Deposit, result['deposits']);
     }));
   }
 
   public getUserRefunds(id: number): Observable<Refund[]> {
-    return this.getData('users/' + String(id) + '/refunds').pipe(map(result => {
-      return result['refunds'];
+    return this.getData('users/' + String(id) + '/refunds').pipe(map((result: RefundResponse) => {
+      return plainToClass(Refund, result['refunds']);
     }));
   }
 
