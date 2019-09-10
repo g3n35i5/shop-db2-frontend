@@ -35,7 +35,8 @@ export class InterceptorComponent implements HttpInterceptor {
         } else if (error.status === 503) {
           this.router.navigate(['/maintenance']);
         } else {
-          this.snackbar.openSnackBar(event['body']['message']);
+          this.snackbar.openSnackBar(error['error']['message']);
+          this.router.navigate(['/']);
         }
       })
     );
