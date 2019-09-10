@@ -3,7 +3,7 @@ import {ShopService} from '../shop.service';
 import {CartState} from '../../interfaces/cartstate';
 import {Subscription} from 'rxjs';
 import {CartItem} from '../../interfaces/cartitem';
-import {User} from '../../interfaces/user';
+import {User} from '../../classes/user';
 import {ShopState} from '../../interfaces/shopstate';
 
 @Component({
@@ -54,10 +54,6 @@ export class CartComponent implements OnInit {
 
   getAvatarString(): string {
     return this.shopService.getUsernameUmlautFree();
-  }
-
-  getUsername(): string {
-    return this.shopService.getUsername();
   }
 
   cartIsEmpty(): boolean {

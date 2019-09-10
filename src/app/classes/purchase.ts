@@ -1,5 +1,5 @@
 import { Product } from '../interfaces/product';
-import { User } from '../interfaces/user';
+import { User } from '../classes/user';
 import { Moment } from 'moment';
 import * as moment from 'moment';
 import { Transform, Type } from 'class-transformer';

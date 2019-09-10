@@ -1,4 +1,4 @@
-import {User} from './user';
+import {User} from '../classes/user';
 
 export interface SortedUsers {
   key: string;

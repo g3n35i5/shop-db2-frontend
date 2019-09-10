@@ -33,7 +33,7 @@
       <ng-container matColumnDef="admin">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin</th>
         <td mat-cell *matCellDef="let deposit">
-          {{ getUsername(deposit.admin) }}
+          {{ deposit.admin.getUsername() }}
         </td>
       </ng-container>
 

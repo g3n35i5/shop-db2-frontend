@@ -10,7 +10,7 @@
           </div>
           <div class="container-inner">
             <section class="username">
-              {{getUsername()}}
+              {{ user.getUsername() }}
               <span class="fill-remaining-space"></span>
               <button mat-icon-button class="mr-1"
                       [routerLink]="['/userhistory', user.id]">

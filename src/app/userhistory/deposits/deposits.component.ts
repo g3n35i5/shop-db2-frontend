@@ -4,8 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../../services/data.service';
 import { forkJoin } from 'rxjs';
-import { User } from '../../interfaces/user';
 import { Deposit } from '../../classes/deposit';
+import {User} from '../../classes/user';
 
 @Component({
   selector: 'app-deposits',
@@ -55,8 +55,8 @@ export class DepositsComponent implements OnInit {
     const that = this;
     if (this.deposits.length > 0) {
       this.dataSource = new MatTableDataSource(this.deposits);
-      this.dataSource.filterPredicate = function(data, filter: string): boolean {
-        return that.getUsername(data.admin).toLowerCase().includes(filter) || data.comment.toLowerCase().includes(filter);
+      this.dataSource.filterPredicate = function (data, filter: string): boolean {
+        return data.admin.getUsername().toLowerCase().includes(filter) || data.comment.toLowerCase().includes(filter);
       };
       for (const deposit of this.deposits) {
         deposit.admin = this.users.find(u => u.id === deposit.admin_id);
@@ -74,9 +74,5 @@ export class DepositsComponent implements OnInit {
   /** Filter the deposits depending on the current filter value.  */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  getUsername(user: User): string {
-    return this.dataService.getUsername(user);
   }
 }

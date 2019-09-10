@@ -41,7 +41,7 @@
               <a mat-list-item [routerLink]="['/shop', user.id]" class="userlink">
                 <mat-icon mat-list-icon>person</mat-icon>
                 <h4 mat-line>
-                  {{dataService.getUsername(user, sortByLastname)}}
+                  {{user.getUsername(sortByLastname)}}
                 </h4>
                 <p mat-line class="muted"> {{ getRankName(user) }} </p>
               </a>

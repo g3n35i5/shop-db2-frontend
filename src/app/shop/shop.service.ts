@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user';
 import { Product } from '../interfaces/product';
 import { Rank } from '../interfaces/rank';
 import { CartItem } from '../interfaces/cartitem';
@@ -11,6 +10,7 @@ import { SettingsService } from '../settings/settings.service';
 import { Router } from '@angular/router';
 import { ShopState } from '../interfaces/shopstate';
 import { environment } from '../../environments/environment';
+import {User} from '../classes/user';
 
 @Injectable({
   providedIn: 'root'
@@ -113,21 +113,16 @@ export class ShopService {
     const item: CartItem = this.cart.find(c => c.product === product);
     if (item) {
       if (item.count === 1) {
-        this.cart = this.cart.filter((_item) =>  _item.product !== product);
+        this.cart = this.cart.filter((_item) => _item.product !== product);
       } else {
-        item.count --;
+        item.count--;
       }
     }
     this.cartSubject.next({disableInput: false, cart: this.cart});
   }
 
-
-  getUsername(): string {
-    return this.dataService.getUsername(this.user);
-  }
-
   getUsernameUmlautFree(): string {
-    return this.dataService.replaceUmlauts(this.getUsername());
+    return this.dataService.replaceUmlauts(this.user.getUsername());
   }
 
   /**

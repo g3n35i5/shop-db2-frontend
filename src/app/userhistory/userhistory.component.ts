@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
-import {User} from '../interfaces/user';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-userhistory',

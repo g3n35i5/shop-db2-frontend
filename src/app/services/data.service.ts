@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../interfaces/user';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { map } from 'rxjs/operators';
@@ -23,6 +22,7 @@ export interface DepositResponse {
 export interface RefundResponse {
   refunds: object[];
 }
+import {User} from '../classes/user';
 
 
 @Injectable({
@@ -63,24 +63,15 @@ export class DataService {
       );
   }
 
-  public getUsername(user: User, lastnameFirst = false): string {
-    if (lastnameFirst && user.firstname) {
-      return [user.lastname, user.firstname].join(', ');
-    } else if (lastnameFirst) {
-      return user.lastname;
-    }
-    return[user.firstname, user.lastname].join(' ');
-  }
-
   public getUsers(): Observable<User[]> {
     return this.getData('users').pipe(map(result => {
-      return result['users'];
+      return plainToClass(User, <any[]>result['users']);
     }));
   }
 
   public getUser(id: number): Observable<User> {
-    return this.getData('users/' + id.toString()).pipe(map(result => {
-      return result['user'];
+    return this.getData('users/' + id.toString()).pipe(map((result: any) => {
+      return plainToClass(User, result['user']);
     }));
   }
 

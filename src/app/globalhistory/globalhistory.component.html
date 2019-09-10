@@ -30,7 +30,7 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let purchase">
-              {{getUsername(userMap.get(purchase.user_id))}}
+              {{ userMap.get(purchase.user_id).getUsername() }}
             </td>
           </ng-container>
 

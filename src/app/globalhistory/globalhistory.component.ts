@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Purchase } from '../classes/purchase';
 import { Product } from '../interfaces/product';
-import { User } from '../interfaces/user';
+import { User } from '../classes/user';
 
 @Component({
   selector: 'app-globalhistory',
@@ -40,10 +40,6 @@ export class GlobalhistoryComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.loadData();
-  }
-
-  getUsername(user: User) {
-    return this.dataService.getUsername(user);
   }
 
   goBackToLogin() {

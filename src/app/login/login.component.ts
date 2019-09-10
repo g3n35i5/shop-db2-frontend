@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { SettingsService } from '../settings/settings.service';
-import { User } from '../interfaces/user';
 import { Rank } from '../interfaces/rank';
 import { SortedUsers } from '../interfaces/sortedusers';
 import { forkJoin } from 'rxjs';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-login',

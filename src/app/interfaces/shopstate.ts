@@ -1,5 +1,4 @@
-
-import {User} from './user';
+import {User} from '../classes/user';
 import {Product} from './product';
 import {Tag} from './tag';
 

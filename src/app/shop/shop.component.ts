@@ -6,8 +6,8 @@ import { ShopService } from './shop.service';
 import { Subscription } from 'rxjs';
 import { CartItem } from '../interfaces/cartitem';
 import { CartState } from '../interfaces/cartstate';
-import { User } from '../interfaces/user';
 import { ShopState } from '../interfaces/shopstate';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-shop',
@@ -74,10 +74,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   cartIsEmpty(): boolean {
     return this.shopService.cartIsEmpty();
-  }
-
-  getUsername(): string {
-    return this.shopService.getUsername();
   }
 
   /** Opens the credit warning dialog. **/
