@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { curveBasis, curveStep, curveLinear, curveCardinal } from 'd3-shape';
+import {curveCardinal, curveLinear, curveStepAfter} from 'd3-shape';
+
 
 @Component({
   selector: 'app-chart',
@@ -16,6 +17,9 @@ export class ChartComponent implements OnInit {
   @Input() showXAxisLabel: Boolean = false;
   @Input() showYAxisLabel: Boolean = false;
   @Input() interpolation: String;
+  @Input() scheme: any;
+  @Input() yScaleMin: number;
+  @Input() xScaleMin: number;
 
   public curve: any;
   public showGridLines: Boolean = true;
@@ -25,9 +29,15 @@ export class ChartComponent implements OnInit {
 
   ngOnInit() {
     switch (this.interpolation) {
-      case 'smooth': this.curve = curveCardinal; break;
-      case 'binary': this.curve = curveStep; break;
-      default: this.curve = curveLinear; break;
+      case 'smooth':
+        this.curve = curveCardinal;
+        break;
+      case 'binary':
+        this.curve = curveStepAfter;
+        break;
+      default:
+        this.curve = curveLinear;
+        break;
     }
   }
 

@@ -11,7 +11,7 @@
       </button>
     </mat-card-actions>
     <mat-card-header>
-      <mat-card-title>Hello {{ getUsername() }}!</mat-card-title>
+      <mat-card-title>Hello {{ user.getUsername() }}!</mat-card-title>
       <mat-card-subtitle>
         On this page you will find a collection of some statistics about
         your purchases
@@ -19,25 +19,51 @@
     </mat-card-header>
     <mat-card-content class="marginContent">
       <mat-form-field>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startDatepicker" placeholder="Start date"
-               [formControl]="startDatepickerCtl" (dateChange)="updateStats($event)">
-        <mat-datepicker-toggle matSuffix [for]="startDatepicker" ></mat-datepicker-toggle>
+        <input matInput [min]="minDate" [max]="maxDate"
+               [matDatepicker]="startDatepicker" placeholder="Start date"
+               [formControl]="startDatepickerCtl"
+               (dateChange)="updateStats($event)">
+        <mat-datepicker-toggle matSuffix
+                               [for]="startDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #startDatepicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="endDatepicker" placeholder="End date"
-               [formControl]="endDatepickerCtl" (dateChange)="updateStats($event)">
-        <mat-datepicker-toggle matSuffix [for]="endDatepicker" ></mat-datepicker-toggle>
+        <input matInput [min]="minDate" [max]="maxDate"
+               [matDatepicker]="endDatepicker" placeholder="End date"
+               [formControl]="endDatepickerCtl"
+               (dateChange)="updateStats($event)">
+        <mat-datepicker-toggle matSuffix
+                               [for]="endDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #endDatepicker></mat-datepicker>
       </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Color Scheme</mat-label>
+        <mat-select [(ngModel)]="selectedColorScheme" name="food">
+          <mat-option *ngFor="let scheme of colorSchemes" [value]="scheme">
+            {{scheme.name | uppercase}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button (click)="setLastWeek()" mat-button>Last Week</button>
+        <button (click)="setLastMonth()" mat-button>Last Month</button>
+        <button (click)="setLastThreeMonths()" mat-button>Last 3 Months</button>
+        <button (click)="setLastThreeYear()" mat-button>Last Year</button>
+        <button (click)="resetTimePeriod()" mat-button>Reset</button>
+      </mat-card-actions>
+
       <mat-card-subtitle>
-        In the selected period you made <strong>{{ filteredPurchases.length }}</strong> purchases
+        In the selected period you made
+        <strong>{{ filteredPurchases.length }}</strong> purchases
       </mat-card-subtitle>
     </mat-card-content>
   </mat-card>
 
-  <div fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center" *ngIf="showCharts()">
+  <div fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center"
+       *ngIf="showCharts()">
     <app-chart class="tile" *ngFor="let card of cards"
                [title]="card.title"
                [chartData]="card.data"
@@ -46,6 +72,9 @@
                [showYAxisLabel]="card.showYAxisLabel"
                [xAxisLabel]="card.xAxisLabel"
                [yAxisLabel]="card.yAxisLabel"
+               [xScaleMin]="card.xScaleMin"
+               [yScaleMin]="card.yScaleMin"
+               [scheme]="selectedColorScheme"
                [interpolation]="card.interpolation"></app-chart>
   </div>
   <div class="center-card center-text" *ngIf="!showCharts()">

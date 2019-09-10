@@ -9,7 +9,8 @@
       *ngIf="chartType == 'pie'"
       [labels]="true"
       [results]="chartData"
-      [legend]="false">
+      [legend]="false"
+      [scheme]="scheme">
     </ngx-charts-pie-chart>
     <ngx-charts-bar-vertical
       *ngIf="chartType == 'bar'"
@@ -18,9 +19,11 @@
       [yAxis]="true"
       [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel"
+      [yScaleMin]="yScaleMin"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
-      [showGridLines]="showGridLines">
+      [showGridLines]="showGridLines"
+      [scheme]="scheme">
     </ngx-charts-bar-vertical>
     <ngx-charts-line-chart
       *ngIf="chartType == 'line'"
@@ -29,11 +32,30 @@
       [yAxis]="true"
       [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel"
+      [xScaleMin]="xScaleMin"
+      [yScaleMin]="yScaleMin"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
       [showGridLines]="showGridLines"
       [curve]="curve"
+      [scheme]="scheme"
       timeline="true">
     </ngx-charts-line-chart>
+    <ngx-charts-area-chart
+      *ngIf="chartType == 'area'"
+      [results]="chartData"
+      [xAxis]="true"
+      [yAxis]="true"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [xScaleMin]="xScaleMin"
+      [yScaleMin]="yScaleMin"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [showGridLines]="showGridLines"
+      [curve]="curve"
+      [scheme]="scheme"
+      timeline="true">
+    </ngx-charts-area-chart>
   </mat-card-content>
 </mat-card>
