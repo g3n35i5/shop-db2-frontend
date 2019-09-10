@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GlobalhistoryComponent } from './globalhistory.component';
+import {GlobalhistoryComponent} from './globalhistory.component';
 
 describe('GlobalhistoryComponent', () => {
   let component: GlobalhistoryComponent;
@@ -8,9 +8,9 @@ describe('GlobalhistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GlobalhistoryComponent ]
+      declarations: [GlobalhistoryComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

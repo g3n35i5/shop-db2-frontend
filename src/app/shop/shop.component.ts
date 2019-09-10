@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { CreditwarningComponent } from './dialogs/creditwarning/creditwarning.component';
-import { ShopService } from './shop.service';
-import { Subscription } from 'rxjs';
-import { CartItem } from '../interfaces/cartitem';
-import { CartState } from '../interfaces/cartstate';
-import { ShopState } from '../interfaces/shopstate';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {CreditwarningComponent} from './dialogs/creditwarning/creditwarning.component';
+import {ShopService} from './shop.service';
+import {Subscription} from 'rxjs';
+import {CartItem} from '../interfaces/cartitem';
+import {CartState} from '../interfaces/cartstate';
 import {User} from '../classes/user';
+import {ShopState} from '../interfaces/shopstate';
 
 @Component({
   selector: 'app-shop',
@@ -35,7 +35,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       this.userID = params['id'];
       this.shopService.switchUser(this.userID);
     });
-}
+  }
 
   ngOnInit() {
     this.firstVisit = true;

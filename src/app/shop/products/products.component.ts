@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { ShopService } from '../shop.service';
-import { Subscription } from 'rxjs';
-import { Product } from '../../interfaces/product';
-import { Tag } from '../../interfaces/tag';
-import { ShopState } from '../../interfaces/shopstate';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {ShopService} from '../shop.service';
+import {Subscription} from 'rxjs';
+import {Product} from '../../interfaces/product';
+import {Tag} from '../../interfaces/tag';
+import {ShopState} from '../../interfaces/shopstate';
 
 @Component({
   selector: 'app-products',
@@ -107,9 +107,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const that = this;
     return this.products.filter(
       product => product.tags.indexOf(tag.id) >= 0)
-      .some(function(product) {
+      .some(function (product) {
         return that.shopService.productIsNew(product);
-    });
+      });
   }
 
   /**

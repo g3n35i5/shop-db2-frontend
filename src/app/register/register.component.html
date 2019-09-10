@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <a mat-button [routerLink]="['/']">
-    <mat-icon>arrow_back</mat-icon>Back to login
+    <mat-icon>arrow_back</mat-icon>
+    Back to login
   </a>
 </mat-toolbar>
 
@@ -17,20 +18,24 @@
               {{getErrorMessage('firstname')}}
             </mat-error>
             <mat-hint align="end">
-              {{registerForm.controls['firstname'].value.length}} / {{maxFirstnameLength}}
+              {{registerForm.controls['firstname'].value.length}}
+              / {{maxFirstnameLength}}
             </mat-hint>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Lastname" formControlName="lastname" required>
+            <input matInput placeholder="Lastname" formControlName="lastname"
+                   required>
             <mat-error *ngIf="hasError('lastname')">
               {{getErrorMessage('lastname')}}
             </mat-error>
             <mat-hint align="end">
-              {{registerForm.controls['lastname'].value.length}} / {{maxLastnameLength}}
+              {{registerForm.controls['lastname'].value.length}}
+              / {{maxLastnameLength}}
             </mat-hint>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Password" formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+            <input matInput placeholder="Password" formControlName="password"
+                   [type]="hidePassword ? 'password' : 'text'">
             <mat-hint align="start">
               The password is optional
               <mat-icon [matTooltip]="passwordInfo">info</mat-icon>
@@ -39,25 +44,31 @@
               {{getErrorMessage('password')}}
             </mat-error>
             <mat-hint align="end">
-              {{registerForm.controls['password'].value.length}} / {{maxPasswordLength}}
+              {{registerForm.controls['password'].value.length}}
+              / {{maxPasswordLength}}
             </mat-hint>
             <mat-icon matSuffix (click)="hidePassword = !hidePassword">
               {{hidePassword ? 'visibility_off' : 'visibility'}}
             </mat-icon>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Repeat password" formControlName="password_repeat" [type]="hidePassword ? 'password' : 'text'">
+            <input matInput placeholder="Repeat password"
+                   formControlName="password_repeat"
+                   [type]="hidePassword ? 'password' : 'text'">
             <mat-error *ngIf="hasError('password_repeat')">
               {{getErrorMessage('password_repeat')}}
             </mat-error>
             <mat-hint align="end">
-              {{registerForm.controls['password_repeat'].value.length}} / {{maxPasswordLength}}
+              {{registerForm.controls['password_repeat'].value.length}}
+              / {{maxPasswordLength}}
             </mat-hint>
           </mat-form-field>
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button color="primary" [disabled]="disableInput" (click)="submit()">Register</button>
+        <button mat-button color="primary" [disabled]="disableInput"
+                (click)="submit()">Register
+        </button>
       </mat-card-actions>
     </div>
   </mat-card>

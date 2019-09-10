@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ShopService} from '../shop.service';
 import {CartState} from '../../interfaces/cartstate';
 import {Subscription} from 'rxjs';
@@ -22,7 +22,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private shopService: ShopService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.shopSubscription = this.shopService.shopState.subscribe((state: ShopState) => {

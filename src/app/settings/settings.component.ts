@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BinarySettingsItem } from '../interfaces/binarysettingsitem';
-import { SettingsService } from './settings.service';
+import {Component, OnInit} from '@angular/core';
+import {BinarySettingsItem} from '../interfaces/binarysettingsitem';
+import {SettingsService} from './settings.service';
 
 @Component({
   selector: 'app-settings',

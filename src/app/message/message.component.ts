@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DataService } from '../services/data.service';
-import { CASES } from './messages';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DataService} from '../services/data.service';
+import {CASES} from './messages';
 
 @Component({
   selector: 'app-message',
@@ -15,11 +15,13 @@ export class MessageComponent implements OnInit {
   public message;
 
   public loading: boolean;
+
   constructor(
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.subscription = this.route.data.subscribe(params => {
@@ -60,7 +62,7 @@ export class MessageComponent implements OnInit {
   }
 
   /** Try to connect to the backend.*/
-  retry () {
+  retry() {
     /** Set the loading variable to true. This disables the button
      and switches the button text.*/
     this.loading = true;

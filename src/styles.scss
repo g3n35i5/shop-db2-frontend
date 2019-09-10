@@ -4,11 +4,14 @@
 @include mat-core();
 .dark-theme {
   $dark-primary: mat-palette($mat-pink, 500, 700, 900);
-  $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
-  $dark-warn:    mat-palette($mat-deep-orange);
+  $dark-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+  $dark-warn: mat-palette($mat-deep-orange);
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
-  .ngx-charts, text { fill: #e0e0e0; }
+
+  .ngx-charts, text {
+    fill: #e0e0e0;
+  }
 
 }
 

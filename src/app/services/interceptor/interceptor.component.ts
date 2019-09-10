@@ -1,22 +1,17 @@
-import { Injectable } from '@angular/core';
-import {
-  HttpResponse,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest,
-  HttpEvent
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { SnackbarService } from '../snackbar/snackbar.service';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {SnackbarService} from '../snackbar/snackbar.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class InterceptorComponent implements HttpInterceptor {
   constructor(
     private snackbar: SnackbarService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   /** Intercept all HTTP requests. Open a snackbar on success or error.*/
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

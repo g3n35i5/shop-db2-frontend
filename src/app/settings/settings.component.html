@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <a mat-button [routerLink]="['/']">
-    <mat-icon>arrow_back</mat-icon>Back to login
+    <mat-icon>arrow_back</mat-icon>
+    Back to login
   </a>
 </mat-toolbar>
 
@@ -10,7 +11,8 @@
       <div fxLayout="row" fxLayoutAlign="center center">
         <div fxFlex="50%" fxFlex.lt-md="100%">
           <mat-card-title>Settings</mat-card-title>
-          <mat-card-subtitle>Customize shop.db to your needs.</mat-card-subtitle>
+          <mat-card-subtitle>Customize shop.db to your needs.
+          </mat-card-subtitle>
           <mat-list *ngFor="let item of settings">
             <mat-list-item>
               <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>

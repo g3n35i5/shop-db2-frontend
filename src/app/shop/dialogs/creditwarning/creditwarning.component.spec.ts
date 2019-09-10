@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreditwarningComponent } from './creditwarning.component';
+import {CreditwarningComponent} from './creditwarning.component';
 
 describe('CreditwarningComponent', () => {
   let component: CreditwarningComponent;
@@ -8,9 +8,9 @@ describe('CreditwarningComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreditwarningComponent ]
+      declarations: [CreditwarningComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

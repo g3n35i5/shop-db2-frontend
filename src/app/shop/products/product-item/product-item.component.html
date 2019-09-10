@@ -1,9 +1,12 @@
 <mat-list-item>
-  <img matListAvatar [src]="imageURL(product)" fxShow [fxHide.lt-lg]="hideImageOnSmallScreens" [class]="disableAddToCart(product) ? 'black-white-image' : ''">
+  <img matListAvatar [src]="imageURL(product)" fxShow
+       [fxHide.lt-lg]="hideImageOnSmallScreens"
+       [class]="disableAddToCart(product) ? 'black-white-image' : ''">
 
   <h3 matLine>
     {{ product.name }}
-    <mat-chip color="primary" *ngIf="productIsNew(product)" selected>new</mat-chip>
+    <mat-chip color="primary" *ngIf="productIsNew(product)" selected>new
+    </mat-chip>
   </h3>
   <p matLine>{{product.price | customCurrency | currency: 'EUR'}}</p>
   <!-- Fill remaining space, move content right. -->
@@ -11,7 +14,8 @@
   <span class="fill-remaining-space"></span>
   <div class="addProductButtons">
     <!-- Decrease product count in cart by 1. -->
-    <button mat-icon-button [disabled]="productCountInCart(product) === 0" (click)="removeFromCart(product)">
+    <button mat-icon-button [disabled]="productCountInCart(product) === 0"
+            (click)="removeFromCart(product)">
       <mat-icon>remove</mat-icon>
     </button>
     <!-- Show the product count in the cart. -->
@@ -19,7 +23,8 @@
       <mat-chip>{{productCountInCart(product)}}</mat-chip>
     </mat-chip-list>
     <!-- Increase product count in cart by 1. -->
-    <button mat-icon-button [disabled]="disableAddToCart(product)" (click)="addToCart(product)">
+    <button mat-icon-button [disabled]="disableAddToCart(product)"
+            (click)="addToCart(product)">
       <mat-icon>add</mat-icon>
     </button>
   </div>

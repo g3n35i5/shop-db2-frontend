@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from '../services/data.service';
-import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { Purchase } from '../classes/purchase';
-import { Product } from '../interfaces/product';
-import { User } from '../classes/user';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {DataService} from '../services/data.service';
+import {Router} from '@angular/router';
+import {forkJoin} from 'rxjs';
+import {Purchase} from '../classes/purchase';
+import {Product} from '../interfaces/product';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-globalhistory',
@@ -35,7 +35,8 @@ export class GlobalhistoryComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.loading = true;

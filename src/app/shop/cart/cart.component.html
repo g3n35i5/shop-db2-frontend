@@ -66,8 +66,11 @@
 
       </mat-card-content>
       <mat-card-actions class="cart-content" *ngIf="!cartIsEmpty()">
-        <button mat-button [disabled]="disableInput" (click)="submitCart()">Buy</button>
-        <button mat-button color="primary" (click)="deleteCart()">Delete</button>
+        <button mat-button [disabled]="disableInput" (click)="submitCart()">
+          Buy
+        </button>
+        <button mat-button color="primary" (click)="deleteCart()">Delete
+        </button>
       </mat-card-actions>
     </div>
   </mat-card>

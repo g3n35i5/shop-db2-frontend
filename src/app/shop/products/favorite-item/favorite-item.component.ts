@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Product } from '../../../interfaces/product';
-import { ShopService } from '../../shop.service';
+import {Component, Input} from '@angular/core';
+import {Product} from '../../../interfaces/product';
+import {ShopService} from '../../shop.service';
 
 @Component({
   selector: 'app-favorite-item',
@@ -10,8 +10,10 @@ import { ShopService } from '../../shop.service';
 
 export class FavoriteItemComponent {
 
-  @Input()product: Product;
-  constructor(private shopService: ShopService) {}
+  @Input() product: Product;
+
+  constructor(private shopService: ShopService) {
+  }
 
   addToCart(product: Product): void {
     this.shopService.addProduct(product);

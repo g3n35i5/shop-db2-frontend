@@ -3,6 +3,8 @@ export interface ChartCard {
   type: String;
   xAxisLabel?: String;
   yAxisLabel?: String;
+  yScaleMin?: number;
+  xScaleMin?: number;
   showXAxisLabel?: Boolean;
   showYAxisLabel?: Boolean;
   data: any[];

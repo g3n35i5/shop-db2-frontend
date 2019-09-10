@@ -21,8 +21,12 @@
         shopping_cart
       </mat-icon>
       <span class="fill-remaining-space"></span>
-      <button mat-flat-button color="accent" [disabled]="disableBuyButton()" (click)="submitCart()">Buy</button>
-      <button mat-button [disabled]="cartIsEmpty()" (click)="deleteCart()">Delete</button>
+      <button mat-flat-button color="accent" [disabled]="disableBuyButton()"
+              (click)="submitCart()">Buy
+      </button>
+      <button mat-button [disabled]="cartIsEmpty()" (click)="deleteCart()">
+        Delete
+      </button>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>

@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from '../../services/data.service';
-import { forkJoin } from 'rxjs';
-import { Deposit } from '../../classes/deposit';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {DataService} from '../../services/data.service';
+import {forkJoin} from 'rxjs';
 import {User} from '../../classes/user';
+import {Deposit} from '../../classes/deposit';
 
 @Component({
   selector: 'app-deposits',

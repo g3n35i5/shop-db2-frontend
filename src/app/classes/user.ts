@@ -10,11 +10,11 @@ export class User {
   rank_id: number;
   is_admin: boolean;
   @Type(() => Date)
-  @Transform(value => moment(value), { toClassOnly: true })
+  @Transform(value => moment(value), {toClassOnly: true})
   creation_date: Moment;
 
   @Type(() => Date)
-  @Transform(value => moment(value), { toClassOnly: true })
+  @Transform(value => moment(value), {toClassOnly: true})
   verification_date: Moment;
 
   getUsername(lastnameFirst = false): string {
@@ -23,6 +23,6 @@ export class User {
     } else if (lastnameFirst) {
       return this.lastname;
     }
-    return[this.firstname, this.lastname].join(' ');
+    return [this.firstname, this.lastname].join(' ');
   }
 }

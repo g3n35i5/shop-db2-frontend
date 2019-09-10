@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UserhistoryComponent } from './userhistory.component';
+import {UserhistoryComponent} from './userhistory.component';
 
 describe('UserhistoryComponent', () => {
   let component: UserhistoryComponent;
@@ -8,9 +8,9 @@ describe('UserhistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserhistoryComponent ]
+      declarations: [UserhistoryComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

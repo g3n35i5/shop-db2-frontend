@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Product } from '../../../interfaces/product';
-import { ShopService } from '../../shop.service';
+import {Component, Input} from '@angular/core';
+import {Product} from '../../../interfaces/product';
+import {ShopService} from '../../shop.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,9 +9,11 @@ import { ShopService } from '../../shop.service';
 })
 export class ProductItemComponent {
 
-  @Input()product: Product;
-  @Input()hideImageOnSmallScreens = false;
-  constructor(private shopService: ShopService) {}
+  @Input() product: Product;
+  @Input() hideImageOnSmallScreens = false;
+
+  constructor(private shopService: ShopService) {
+  }
 
   addToCart(product: Product): void {
     this.shopService.addProduct(product);

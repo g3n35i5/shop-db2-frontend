@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/product';
-import { Rank } from '../interfaces/rank';
-import { CartItem } from '../interfaces/cartitem';
-import { CartState } from '../interfaces/cartstate';
-import { Tag } from '../interfaces/tag';
-import { DataService } from '../services/data.service';
-import { forkJoin, Subject } from 'rxjs';
-import { SettingsService } from '../settings/settings.service';
-import { Router } from '@angular/router';
-import { ShopState } from '../interfaces/shopstate';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
 import {User} from '../classes/user';
+import {Product} from '../interfaces/product';
+import {Rank} from '../interfaces/rank';
+import {CartItem} from '../interfaces/cartitem';
+import {CartState} from '../interfaces/cartstate';
+import {Tag} from '../interfaces/tag';
+import {DataService} from '../services/data.service';
+import {forkJoin, Subject} from 'rxjs';
+import {SettingsService} from '../settings/settings.service';
+import {Router} from '@angular/router';
+import {ShopState} from '../interfaces/shopstate';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -99,7 +99,7 @@ export class ShopService {
     if (!item) {
       this.cart.push({product: product, count: 1});
     } else {
-      item.count ++;
+      item.count++;
     }
     this.cartSubject.next({disableInput: false, cart: this.cart});
   }
@@ -140,7 +140,7 @@ export class ShopService {
     this.cartSubject.next({disableInput: true, cart: this.cart});
     const requests = [];
     for (const item of this.cart) {
-      const data = { user_id: this.user.id, product_id: item.product.id, amount: item.count };
+      const data = {user_id: this.user.id, product_id: item.product.id, amount: item.count};
       requests.push(this.dataService.createPurchase(data));
     }
     forkJoin(requests).subscribe(() => {

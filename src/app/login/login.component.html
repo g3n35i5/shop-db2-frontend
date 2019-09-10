@@ -20,7 +20,7 @@
 <div class="container" *ngIf="!loading">
   <mat-card>
     <mat-card-content>
-      <div fxLayout="row" fxLayoutAlign="center center" >
+      <div fxLayout="row" fxLayoutAlign="center center">
         <div fxFlex.gt-md="50%" fxFlex.gt-sm="75%" fxFlex="100">
           <div class="pagination-wrapper">
             <mat-chip-list>
@@ -37,8 +37,10 @@
           </div>
           <mat-list *ngFor="let group of sortedUsers">
             <h1 class="mat-display-1 mb-2" [id]="group.key">{{group.key}}</h1>
-            <div class="mat-elevation-z1" matRipple *ngFor="let user of group.users">
-              <a mat-list-item [routerLink]="['/shop', user.id]" class="userlink">
+            <div class="mat-elevation-z1" matRipple
+                 *ngFor="let user of group.users">
+              <a mat-list-item [routerLink]="['/shop', user.id]"
+                 class="userlink">
                 <mat-icon mat-list-icon>person</mat-icon>
                 <h4 mat-line>
                   {{user.getUsername(sortByLastname)}}
@@ -51,7 +53,8 @@
       </div>
 
       <!-- Scroll to top button -->
-      <button mat-fab class="topbutton" color="accent" [ngx-scroll-to]="'top'" [ngx-scroll-to-duration]="100">
+      <button mat-fab class="topbutton" color="accent" [ngx-scroll-to]="'top'"
+              [ngx-scroll-to-duration]="100">
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </mat-card-content>

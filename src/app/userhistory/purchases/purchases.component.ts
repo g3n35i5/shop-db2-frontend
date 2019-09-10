@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from '../../services/data.service';
-import { forkJoin } from 'rxjs';
-import { Product } from '../../interfaces/product';
-import { Purchase } from '../../classes/purchase';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {DataService} from '../../services/data.service';
+import {forkJoin} from 'rxjs';
+import {Product} from '../../interfaces/product';
 import {User} from '../../classes/user';
+import {Purchase} from '../../classes/purchase';
 
 @Component({
   selector: 'app-purchases',
@@ -32,10 +32,10 @@ export class PurchasesComponent implements OnInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
 
-
   constructor(
     private dataService: DataService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.loading = true;
@@ -45,7 +45,7 @@ export class PurchasesComponent implements OnInit {
   /** Revoke a purchase. **/
   toggleRevoke(purchase) {
     this.disableInteraction = true;
-    const data = { revoked: !purchase.revoked };
+    const data = {revoked: !purchase.revoked};
     this.dataService.togglePurchaseRevoke(purchase.id, data).subscribe(() => {
       this.loadData();
     });
@@ -69,7 +69,7 @@ export class PurchasesComponent implements OnInit {
         purchase.product = this.products.find(p => p.id === purchase.product_id);
       }
       this.dataSource = new MatTableDataSource(this.purchases);
-      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+      this.dataSource.filterPredicate = function (data, filter: string): boolean {
         return data.product.name.toLowerCase().includes(filter);
       };
       setTimeout(() => this.dataSource.paginator = this.paginator);

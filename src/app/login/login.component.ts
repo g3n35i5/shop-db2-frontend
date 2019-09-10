@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
-import { SettingsService } from '../settings/settings.service';
-import { Rank } from '../interfaces/rank';
-import { SortedUsers } from '../interfaces/sortedusers';
-import { forkJoin } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../services/data.service';
+import {SettingsService} from '../settings/settings.service';
 import {User} from '../classes/user';
+import {Rank} from '../interfaces/rank';
+import {SortedUsers} from '../interfaces/sortedusers';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
         return -1;
       } else if (k1 === k2) {
         return 0;
-      } else  {
+      } else {
         return k1 < k2 ? -1 : 1;
       }
     };

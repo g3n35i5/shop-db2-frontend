@@ -4,7 +4,7 @@
     <mat-card-header>
       <div fxLayout="column" class="full-width-input">
         <div>
-          <mat-chip-list >
+          <mat-chip-list>
             <mat-chip color="primary" (click)="enableFavorites()">
               <mat-icon class="chipIcon">favorite</mat-icon>
               Favorites
@@ -20,9 +20,13 @@
         </div>
         <div>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="_searchProducts()">
-            <mat-icon matSuffix *ngIf="showResetSearchButton()" (click)="resetSearch()">clear</mat-icon>
-            <mat-icon matSuffix *ngIf="!showResetSearchButton()">search</mat-icon>
+            <input matInput placeholder="Search" [(ngModel)]="searchText"
+                   (ngModelChange)="_searchProducts()">
+            <mat-icon matSuffix *ngIf="showResetSearchButton()"
+                      (click)="resetSearch()">clear
+            </mat-icon>
+            <mat-icon matSuffix *ngIf="!showResetSearchButton()">search
+            </mat-icon>
           </mat-form-field>
         </div>
       </div>
@@ -41,7 +45,8 @@
         </div>
       </div>
       <mat-list *ngIf="!showFavorites">
-        <app-product-item *ngFor="let product of filtered" [product]="product"></app-product-item>
+        <app-product-item *ngFor="let product of filtered"
+                          [product]="product"></app-product-item>
       </mat-list>
       <div *ngIf="filtered.length <= 0" class="center-card center-text">
         <h1 class="mat-h1">Oh, no!</h1>

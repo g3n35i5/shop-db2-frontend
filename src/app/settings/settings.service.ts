@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BinarySettingsItem } from '../interfaces/binarysettingsitem';
-import { Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BinarySettingsItem} from '../interfaces/binarysettingsitem';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

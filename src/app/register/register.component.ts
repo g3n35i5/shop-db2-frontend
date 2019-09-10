@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators
-} from '@angular/forms';
-import { PasswordValidation } from './password-validation';
-import { Router } from '@angular/router';
-import { SnackbarService } from '../services/snackbar/snackbar.service';
-import { DataService } from '../services/data.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {PasswordValidation} from './password-validation';
+import {Router} from '@angular/router';
+import {SnackbarService} from '../services/snackbar/snackbar.service';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-register',

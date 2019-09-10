@@ -1,8 +1,8 @@
-import { Product } from '../interfaces/product';
-import { User } from '../classes/user';
-import { Moment } from 'moment';
+import {Product} from '../interfaces/product';
+import {User} from '../classes/user';
 import * as moment from 'moment';
-import { Transform, Type } from 'class-transformer';
+import {Moment} from 'moment';
+import {Transform, Type} from 'class-transformer';
 
 export class Purchase {
   id: number;
@@ -11,7 +11,7 @@ export class Purchase {
   user_id: number;
   user?: User;
   @Type(() => Date)
-  @Transform(value => moment(value), { toClassOnly: true })
+  @Transform(value => moment(value), {toClassOnly: true})
   timestamp: Moment;
   amount: number;
   price: number;

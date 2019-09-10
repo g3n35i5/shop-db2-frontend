@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../services/data.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DataService} from '../services/data.service';
 import {User} from '../classes/user';
 
 @Component({
@@ -19,7 +18,8 @@ export class UserhistoryComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dataService: DataService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.userID = this.route.snapshot.params['id'];

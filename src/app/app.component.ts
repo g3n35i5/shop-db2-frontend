@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {Subscription, interval} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
 import {SettingsService} from './settings/settings.service';
 import {DataService} from './services/data.service';
 import {BinarySettingsItem} from './interfaces/binarysettingsitem';
 import * as screenfull from 'screenfull';
-import { Screenfull } from 'screenfull';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Screenfull} from 'screenfull';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
