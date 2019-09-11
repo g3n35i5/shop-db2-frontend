@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
 import {forkJoin} from 'rxjs';
 import {Product} from '../interfaces/product';
-import * as moment from 'moment-timezone';
+import * as moment from 'moment-timezone/builds/moment-timezone.min.js';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {ChartCard} from '../interfaces/chartcard';
@@ -13,7 +13,7 @@ import {User} from '../classes/user';
 import {Purchase} from '../classes/purchase';
 import {Deposit} from '../classes/deposit';
 import {Refund} from '../classes/refund';
-import {Moment} from 'moment';
+import {Moment} from 'moment-timezone';
 import {colorSets} from '@swimlane/ngx-charts/release/utils';
 
 // Date compare function

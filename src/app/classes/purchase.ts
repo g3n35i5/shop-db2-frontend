@@ -1,7 +1,7 @@
 import {Product} from '../interfaces/product';
 import {User} from '../classes/user';
-import * as moment from 'moment';
-import {Moment} from 'moment';
+import * as moment from 'moment-timezone/builds/moment-timezone.min.js';
+import {Moment} from 'moment-timezone';
 import {Transform, Type} from 'class-transformer';
 
 export class Purchase {

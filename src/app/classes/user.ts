@@ -1,6 +1,6 @@
 import {Transform, Type} from 'class-transformer';
-import * as moment from 'moment';
-import {Moment} from 'moment';
+import * as moment from 'moment-timezone/builds/moment-timezone.min.js';
+import {Moment} from 'moment-timezone';
 
 export class User {
   id: number;

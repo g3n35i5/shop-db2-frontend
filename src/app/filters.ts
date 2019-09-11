@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import * as moment from 'moment-timezone';
+import * as moment from 'moment-timezone/builds/moment-timezone.min.js';
 
 @Pipe({name: 'customCurrency'})
 export class CustomCurrency implements PipeTransform {
