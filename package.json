@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --prod --optimization --aot --build-optimizer && gzipper --verbose ./dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -28,6 +29,7 @@
     "@w11k/angular-sticky-things": "^1.1.2",
     "class-transformer": "^0.2.3",
     "core-js": "^3.2.1",
+    "gzipper": "^2.10.0",
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",
     "moment-timezone": "^0.5.26",
