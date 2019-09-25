@@ -1,4 +1,5 @@
-<div stickyThing marginTop="16">
+<div #spacer></div>
+<div stickyThing marginTop="16" [spacer]="spacer">
   <mat-card class="cart">
     <app-loading *ngIf="!loaded"></app-loading>
     <div *ngIf="loaded">
