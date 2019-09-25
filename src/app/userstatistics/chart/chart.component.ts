@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {curveCardinal, curveLinear, curveStepAfter} from 'd3-shape';
+import {curveCardinal, curveLinear, curveStepBefore} from 'd3-shape';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class ChartComponent implements OnInit {
         this.curve = curveCardinal;
         break;
       case 'binary':
-        this.curve = curveStepAfter;
+        this.curve = curveStepBefore;
         break;
       default:
         this.curve = curveLinear;
