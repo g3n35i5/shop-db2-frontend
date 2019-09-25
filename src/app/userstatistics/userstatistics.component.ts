@@ -15,9 +15,10 @@ import {Deposit} from '../classes/deposit';
 import {Refund} from '../classes/refund';
 import {Moment} from 'moment-timezone';
 import {colorSets} from '@swimlane/ngx-charts/release/utils';
+import {SortableArray, dynamicSort} from '../classes/arrays';
 
 // Date compare function
-export function _dateCompareFn(date1: Moment, date2: Moment): number {
+export function _dateCompareFn(date1: any, date2: any): number {
   return date1.valueOf() - date2.valueOf();
 }
 
@@ -219,7 +220,7 @@ export class UserstatisticsComponent implements OnInit {
     // Array that contains all dates between the two datepicker values
     const datesInBetween: Moment[] = [];
     for (const date = moment(startValue); date.valueOf() <= endValue; date.add(1, 'days')) {
-      datesInBetween.push(date);
+      datesInBetween.push(moment(date));
     }
 
     // Generate the favorite products chart
@@ -280,7 +281,8 @@ export class UserstatisticsComponent implements OnInit {
   }
 
   createPurchaseActivityChart(datesInBetween: Moment[]) {
-    const purchase_activity = [{name: 'Count', series: []}];
+    const purchase_activity = [{name: 'Count', series: new SortableArray()}];
+
     this.filteredPurchases.forEach(purchase => {
       const item = purchase_activity[0].series.find(x => this.sameDay(moment(x.name), purchase.timestamp));
       if (item) {
@@ -301,11 +303,12 @@ export class UserstatisticsComponent implements OnInit {
       }
     });
 
+    purchase_activity[0].series.sort(dynamicSort('name'));
     this.cards[2].data = purchase_activity;
   }
 
   createDayDistributionChart() {
-    const hour_counts = [{name: 'Percent', series: []}];
+    const hour_counts = [{name: 'Percent', series: new SortableArray()}];
     for (let hour = 0; hour < 24; hour++) {
       hour_counts[0].series.push({name: hour, value: 0});
     }
@@ -313,7 +316,7 @@ export class UserstatisticsComponent implements OnInit {
       const hour = purchase.timestamp.hour();
       hour_counts[0].series.find(x => x.name === hour).value++;
     });
-    hour_counts.sort((a, b) => (a.name > b.name) ? 1 : -1);
+    hour_counts[0].series.sortBy('name');
 
     let sumCounts = 0;
     hour_counts[0].series.forEach(item => sumCounts += item.value);
