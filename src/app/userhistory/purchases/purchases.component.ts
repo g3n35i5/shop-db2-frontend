@@ -4,7 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {DataService} from '../../services/data.service';
 import {forkJoin} from 'rxjs';
-import {Product} from '../../interfaces/product';
+import {Product} from '../../classes/product';
 import {User} from '../../classes/user';
 import {Purchase} from '../../classes/purchase';
 

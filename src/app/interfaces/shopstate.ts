@@ -1,5 +1,5 @@
 import {User} from '../classes/user';
-import {Product} from './product';
+import {Product} from '../classes/product';
 import {Tag} from './tag';
 
 export interface ShopState {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from '../classes/user';
-import {Product} from '../interfaces/product';
+import {Product} from '../classes/product';
 import {Rank} from '../interfaces/rank';
 import {CartItem} from '../interfaces/cartitem';
 import {CartState} from '../interfaces/cartstate';
@@ -224,7 +224,7 @@ export class ShopService {
    */
   productIsNew(product: Product): boolean {
     const now = new Date();
-    const productCreationDate = new Date(product.creation_date);
+    const productCreationDate = product.creation_date.toDate();
     const difference = Math.abs(now.getTime() - productCreationDate.getTime());
     const productAgeInDays = Math.ceil(difference / (1000 * 3600 * 24));
     return productAgeInDays <= 7;

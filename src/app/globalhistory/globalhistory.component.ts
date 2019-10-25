@@ -6,7 +6,7 @@ import {DataService} from '../services/data.service';
 import {Router} from '@angular/router';
 import {forkJoin} from 'rxjs';
 import {Purchase} from '../classes/purchase';
-import {Product} from '../interfaces/product';
+import {Product} from '../classes/product';
 import {User} from '../classes/user';
 
 @Component({

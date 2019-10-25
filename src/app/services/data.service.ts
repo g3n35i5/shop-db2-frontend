@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {Observable} from 'rxjs';
-import {Product} from '../interfaces/product';
 import {map} from 'rxjs/operators';
 import {Rank} from '../interfaces/rank';
 import {Tag} from '../interfaces/tag';
@@ -10,6 +9,7 @@ import {User} from '../classes/user';
 import {Deposit} from '../classes/deposit';
 import {Refund} from '../classes/refund';
 import {Purchase} from '../classes/purchase';
+import {Product} from '../classes/product';
 import {environment} from '../../environments/environment';
 import {plainToClass} from 'class-transformer';
 
@@ -54,62 +54,62 @@ export class DataService {
 
   public getUsers(): Observable<User[]> {
     return this.getData('users').pipe(map(result => {
-      return plainToClass(User, <any[]>result['users']);
+      return plainToClass(User, <any[]>result);
     }));
   }
 
   public getUser(id: number): Observable<User> {
     return this.getData('users/' + id.toString()).pipe(map((result: any) => {
-      return plainToClass(User, result['user']);
+      return plainToClass(User, result);
     }));
   }
 
   public getProducts(): Observable<Product[]> {
     return this.getData('products').pipe(map(result => {
-      return result['products'];
+      return plainToClass(Product, <any[]>result);
     }));
   }
 
   public getPurchases(limit?: number): Observable<Purchase[]> {
     const url = 'purchases' + (limit ? '?limit=' + limit.toString() : '');
     return this.getData(url).pipe(map(result => {
-      return result['purchases'];
+      return plainToClass(Purchase, <any[]>result);
     }));
   }
 
   public getFavorites(id: number): Observable<number[]> {
     return this.getData('users/' + String(id) + '/favorites').pipe(map(result => {
-      return result['favorites'];
+      return <number[]>result;
     }));
   }
 
   public getRanks(): Observable<Rank[]> {
     return this.getData('ranks').pipe(map(result => {
-      return result['ranks'];
+      return <Rank[]>result;
     }));
   }
 
   public getTags(): Observable<Tag[]> {
     return this.getData('tags').pipe(map(result => {
-      return result['tags'];
+      return <Tag[]>result;
     }));
   }
 
   public getUserPurchases(id: number): Observable<Purchase[]> {
     return this.getData('users/' + String(id) + '/purchases').pipe(map((result: any) => {
-      return plainToClass(Purchase, <any[]>result['purchases']);
+      return plainToClass(Purchase, <any[]>result);
     }));
   }
 
   public getUserDeposits(id: number): Observable<Deposit[]> {
     return this.getData('users/' + String(id) + '/deposits').pipe(map((result: any) => {
-      return plainToClass(Deposit, <any[]>result['deposits']);
+      return plainToClass(Deposit, <any[]>result);
     }));
   }
 
   public getUserRefunds(id: number): Observable<Refund[]> {
     return this.getData('users/' + String(id) + '/refunds').pipe(map((result: any) => {
-      return plainToClass(Refund, <any[]>result['refunds']);
+      return plainToClass(Refund, <any[]>result);
     }));
   }
 

@@ -1,7 +1,7 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ShopService} from '../shop.service';
 import {Subscription} from 'rxjs';
-import {Product} from '../../interfaces/product';
+import {Product} from '../../classes/product';
 import {Tag} from '../../interfaces/tag';
 import {ShopState} from '../../interfaces/shopstate';
 

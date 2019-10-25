@@ -3,7 +3,7 @@ import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
 import {forkJoin} from 'rxjs';
-import {Product} from '../interfaces/product';
+import {Product} from '../classes/product';
 import * as moment from 'moment-timezone/builds/moment-timezone.min.js';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
