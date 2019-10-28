@@ -164,16 +164,28 @@ export class UserstatisticsComponent implements OnInit {
       this.refunds = results[5];
 
       // Get the date of the first purchase.
-      const sortedPurchases = this.purchases.length > 1 ? this.purchases.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp)) : this.purchases;
-      const dateOfFirstPurchase = sortedPurchases.length > 0 ? sortedPurchases[0].timestamp : null;
+      if (this.purchases.length > 1) {
+        this.sortedPurchases = this.purchases.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+      } else {
+        this.sortedPurchases = this.purchases;
+      }
+      const dateOfFirstPurchase = this.sortedPurchases.length > 0 ? this.sortedPurchases[0].timestamp : null;
 
       // Get the date of the first deposit.
-      const sortedDeposits = this.deposits.length > 1 ? this.deposits.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp)) : this.deposits;
-      const dateOfFirstDeposit = sortedDeposits.length > 0 ? sortedDeposits[0].timestamp : null;
+      if (this.deposits.length > 1) {
+        this.sortedDeposits = this.deposits.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+      } else {
+        this.sortedDeposits = this.deposits;
+      }
+      const dateOfFirstDeposit = this.sortedDeposits.length > 0 ? this.sortedDeposits[0].timestamp : null;
 
       // Get the date of the first refund.
-      const sortedRefunds = this.refunds.length > 1 ? this.refunds.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp)) : this.refunds;
-      const dateOfFirstRefund = sortedRefunds.length > 0 ? sortedRefunds[0].timestamp : null;
+      if (this.refunds.length > 1) {
+        this.sortedRefunds = this.refunds.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+      } else {
+        this.sortedRefunds = this.refunds;
+      }
+      const dateOfFirstRefund = this.sortedRefunds.length > 0 ? this.sortedRefunds[0].timestamp : null;
 
       // Sort the dates
       const allDates = [dateOfFirstPurchase, dateOfFirstDeposit, dateOfFirstRefund];
