@@ -1,7 +1,10 @@
 <div #spacer>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span routerLink="/">shop.db</span>
+      <a mat-button [routerLink]="['/']">
+        <mat-icon>arrow_back</mat-icon>
+        Back to login
+      </a>
       <span class="fill-remaining-space"></span>
       <span *ngIf="loaded" fxShow fxHide.gt-sm="true">
       <mat-icon class="toolbar-icon">person</mat-icon>

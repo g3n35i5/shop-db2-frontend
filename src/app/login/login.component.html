@@ -24,15 +24,14 @@
         <div fxFlex.gt-md="50%" fxFlex.gt-sm="75%" fxFlex="100">
           <div class="pagination-wrapper">
             <mat-chip-list>
-              <div *ngFor="let group of sortedUsers">
-                <mat-chip
-                  color="accent"
-                  [ngx-scroll-to]="group.key"
-                  [ngx-scroll-to-offset]="75"
-                  [ngx-scroll-to-duration]="100">
-                  {{ group.key }}
-                </mat-chip>
-              </div>
+              <mat-chip
+                *ngFor="let group of sortedUsers"
+                color="accent"
+                [ngx-scroll-to]="group.key"
+                [ngx-scroll-to-offset]="75"
+                [ngx-scroll-to-duration]="100">
+                {{ group.key }}
+              </mat-chip>
             </mat-chip-list>
           </div>
           <mat-list *ngFor="let group of sortedUsers">
