@@ -201,20 +201,26 @@ export class UserstatisticsComponent implements OnInit {
     const endValue = this.endDatepickerCtl.value;
 
     // Sort and filter purchases
-    this.sortedPurchases = this.purchases.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+    this.sortedPurchases = this.purchases
+      .sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp))
+      .filter(purchase => !purchase.revoked);
     this.filteredPurchases = this.sortedPurchases
-      .filter(purchase => moment(purchase.timestamp).isBetween(startValue, endValue, null, '[]') && !purchase.revoked);
+      .filter(purchase => moment(purchase.timestamp).isBetween(startValue, endValue, null, '[]'));
 
 
     // Filter deposits
-    this.sortedDeposits = this.deposits.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+    this.sortedDeposits = this.deposits
+      .sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp))
+      .filter(deposit => !deposit.revoked);
     this.filteredDeposits = this.sortedDeposits
-      .filter(deposit => moment(deposit.timestamp).isBetween(startValue, endValue, null, '[]') && !deposit.revoked);
+      .filter(deposit => moment(deposit.timestamp).isBetween(startValue, endValue, null, '[]'));
 
     // Filter refunds
-    this.sortedRefunds = this.refunds.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+    this.sortedRefunds = this.refunds
+      .sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp))
+      .filter(refund => !refund.revoked);
     this.filteredRefunds = this.sortedRefunds
-      .filter(refund => moment(refund.timestamp).isBetween(startValue, endValue, null, '[]') && !refund.revoked);
+      .filter(refund => moment(refund.timestamp).isBetween(startValue, endValue, null, '[]'));
 
 
     // Array that contains all dates between the two datepicker values
