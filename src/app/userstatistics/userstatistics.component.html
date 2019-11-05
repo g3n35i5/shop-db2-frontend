@@ -5,8 +5,23 @@
   </a>
 </mat-toolbar>
 
+<!--Loading state-->
 <app-loading *ngIf="!loaded"></app-loading>
-<div class="container" *ngIf="loaded">
+
+<!--No statistics available-->
+<div *ngIf="loaded && !statisticsAvailable" class="center-card center-text">
+  <h1 class="mat-h1">Oh, no!</h1>
+  <p class="mat-body-1">
+    No statistics could be created for your account, because not enough
+    activities have been done yet. Try again at a later time.
+  </p>
+  <button mat-flat-button color="primary" (click)="goBackToShop()">
+    Back to shop
+  </button>
+</div>
+
+<!--Statistics available-->
+<div class="container" *ngIf="loaded && statisticsAvailable">
   <mat-card class="mb-1">
     <mat-card-header>
       <mat-card-title>Hello {{ user.getUsername() }}!</mat-card-title>

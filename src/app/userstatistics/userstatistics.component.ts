@@ -74,6 +74,7 @@ export class UserstatisticsComponent implements OnInit {
   maxDate = moment(new Date());
 
   public loaded = false;
+  public statisticsAvailable = true;
 
   cards: ChartCard[] = [
     {
@@ -188,20 +189,22 @@ export class UserstatisticsComponent implements OnInit {
       const dateOfFirstRefund = this.sortedRefunds.length > 0 ? this.sortedRefunds[0].timestamp : null;
 
       // Sort the dates
-      const allDates = [dateOfFirstPurchase, dateOfFirstDeposit, dateOfFirstRefund];
-      allDates.forEach(function (item, index, object) {
-        if (item === null) {
-          object.splice(index, 1);
-        }
-      });
-      const sortedStartDates = allDates.length > 1 ? allDates.sort((a, b) => _dateCompareFn(a, b)) : allDates[0];
+      const allDates = [dateOfFirstPurchase, dateOfFirstDeposit, dateOfFirstRefund].filter(item => item !== null);
 
-      // Get the date of the first "event"
-      this.minDate = sortedStartDates[0];
-      this.globalMinDate = sortedStartDates[0];
+      // We can only generate statistics, if there is any data...
+      console.log(allDates);
+      if (allDates.length > 0) {
+       const sortedStartDates = allDates.length > 1 ? allDates.sort((a, b) => _dateCompareFn(a, b)) : allDates[0];
+        // Get the date of the first "event"
+        this.minDate = sortedStartDates[0];
+        this.globalMinDate = sortedStartDates[0];
 
-      this.startDatepickerCtl.setValue(this.globalMinDate);
-      this.processingData();
+        this.startDatepickerCtl.setValue(this.globalMinDate);
+        this.processingData();
+      } else {
+        this.statisticsAvailable = false;
+        this.loaded = true;
+      }
     });
   }
 
