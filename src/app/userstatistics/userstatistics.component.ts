@@ -192,7 +192,6 @@ export class UserstatisticsComponent implements OnInit {
       const allDates = [dateOfFirstPurchase, dateOfFirstDeposit, dateOfFirstRefund].filter(item => item !== null);
 
       // We can only generate statistics, if there is any data...
-      console.log(allDates);
       if (allDates.length > 0) {
        const sortedStartDates = allDates.length > 1 ? allDates.sort((a, b) => _dateCompareFn(a, b)) : allDates[0];
         // Get the date of the first "event"
