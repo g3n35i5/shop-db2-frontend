@@ -87,8 +87,8 @@ export class SettingsService {
    */
   public getState(item: BinarySettingsItem): boolean {
     const DEFAULT = item.default;
-    const result = JSON.parse(localStorage.getItem(item.storageID));
-    return result !== null ? result : DEFAULT;
+    const result: BinarySettingsItem = JSON.parse(localStorage.getItem(item.storageID));
+    return result !== null ? result.state : DEFAULT;
   }
 
   /**
@@ -97,7 +97,7 @@ export class SettingsService {
    * @param item is the item which value has to be stored.
    */
   public setState(item: BinarySettingsItem): void {
-    localStorage.setItem(item.storageID, this.getState(item).toString());
+    localStorage.setItem(item.storageID, JSON.stringify(item));
     this.settingsSubject.next(<BinarySettingsItem>item);
   }
 }
