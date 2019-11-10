@@ -5,6 +5,11 @@ import {tap} from 'rxjs/operators';
 import {SnackbarService} from '../snackbar/snackbar.service';
 import {Router} from '@angular/router';
 
+/** This array contains all routes from which you will be redirected to the login page
+ * if the backend is normally reachable again.
+ */
+const redirectLoginCases: String[] = ['/offline', '/maintenance'];
+
 @Injectable()
 export class InterceptorComponent implements HttpInterceptor {
   constructor(
@@ -18,6 +23,12 @@ export class InterceptorComponent implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
+          /** If we are on a page that was caused by a previous redirection (offline, maintenance, ...)
+           *  and the backend is now normally accessible again, we redirect to the login page again.
+           */
+          if (redirectLoginCases.includes(this.router.url)) {
+            this.router.navigate(['/']);
+          }
           /** Only those answers are to be opened as snackbar which also
            have a message in their body. */
           if (event.body.hasOwnProperty('message')) {
