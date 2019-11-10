@@ -39,9 +39,9 @@ export class AppComponent {
       this.askForFullscreen();
     }
 
-    // Each 10 seconds, check the backend online status.
-    interval(10000).subscribe(() => {
-      this.dataService.backendOnline().subscribe();
+    // Each 5 seconds, check the backend online status but suppress any console output on failure.
+    interval(5000).subscribe(() => {
+      this.dataService.backendOnline().subscribe(() => {}, () => {});
     });
   }
 
