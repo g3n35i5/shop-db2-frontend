@@ -14,7 +14,7 @@
   <span class="fill-remaining-space"></span>
   <div class="addProductButtons">
     <!-- Decrease product count in cart by 1. -->
-    <button mat-icon-button [disabled]="productCountInCart(product) === 0"
+    <button mat-icon-button [disabled]="disableRemoveFromCart(product)"
             (click)="removeFromCart(product)">
       <mat-icon>remove</mat-icon>
     </button>

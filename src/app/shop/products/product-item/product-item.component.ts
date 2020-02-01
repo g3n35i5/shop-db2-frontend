@@ -35,6 +35,10 @@ export class ProductItemComponent {
     return this.shopService.disableAddToCart(product);
   }
 
+  disableRemoveFromCart(product: Product): boolean {
+    return this.shopService.disableRemoveFromCart(product);
+  }
+
   productIsNew(product: Product): boolean {
     return this.shopService.productIsNew(product);
   }

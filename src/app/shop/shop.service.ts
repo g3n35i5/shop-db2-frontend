@@ -94,6 +94,7 @@ export class ShopService {
     this.cartSubject.next({disableInput: true, cart: this.cart});
     const item: CartItem = this.cart.find(c => c.product === product);
     if (this.disableAddToCart(product)) {
+      this.cartSubject.next({disableInput: this.preventPurchase(), cart: this.cart});
       return;
     }
     if (!item) {
@@ -101,7 +102,7 @@ export class ShopService {
     } else {
       item.count++;
     }
-    this.cartSubject.next({disableInput: false, cart: this.cart});
+    this.cartSubject.next({disableInput: this.preventPurchase(), cart: this.cart});
   }
 
   /**
@@ -110,6 +111,10 @@ export class ShopService {
    */
   removeProduct(product: Product) {
     this.cartSubject.next({disableInput: true, cart: this.cart});
+    if (this.disableRemoveFromCart(product)) {
+      this.cartSubject.next({disableInput: this.preventPurchase(), cart: this.cart});
+      return;
+    }
     const item: CartItem = this.cart.find(c => c.product === product);
     if (item) {
       if (item.count === 1) {
@@ -118,7 +123,7 @@ export class ShopService {
         item.count--;
       }
     }
-    this.cartSubject.next({disableInput: false, cart: this.cart});
+    this.cartSubject.next({disableInput: this.preventPurchase(), cart: this.cart});
   }
 
   getUsernameUmlautFree(): string {
@@ -136,25 +141,36 @@ export class ShopService {
   /**
    * Submit the shopping cart.
    */
-  submitCart(): void {
+  async submitCart(): Promise<void> {
     this.cartSubject.next({disableInput: true, cart: this.cart});
     const requests = [];
+
+    // We need to sort the purchases in the card by the resulting price in ascending order.
+    // This resolves the following issue: https://github.com/g3n35i5/shop-db2-frontend/issues/7
+    this.cart.sort(this._cart_sort_fn);
+
+    let errorCounter = 0;
+
     for (const item of this.cart) {
       const data = {user_id: this.user.id, product_id: item.product.id, amount: item.count};
-      requests.push(this.dataService.createPurchase(data));
-    }
-    forkJoin(requests).subscribe(() => {
-      if (this.settingsService.getStateByID('redirectAfterPurchase')) {
-        this.router.navigate(['/']);
-      } else {
-        this.deleteCart();
-        this.reloadData();
-        this.disableInput = false;
-        this.cartSubject.next({disableInput: false, cart: this.cart});
+
+      try {
+        await this.dataService.createPurchase(data).toPromise();
+      } catch (e) {
+        errorCounter++;
+        continue;
       }
-    }, () => {
-      this.cartSubject.next({disableInput: false, cart: this.cart});
-    });
+
+      // Remove successfully inserted cart item from the cart
+      this.cart = this.cart.filter((cartItem: CartItem) => cartItem !== item);
+    }
+
+    if (errorCounter === 0 && this.settingsService.getStateByID('redirectAfterPurchase')) {
+      await this.router.navigate(['/']);
+    } else {
+      this.disableInput = false;
+      this.cartSubject.next({disableInput: this.preventPurchase(), cart: this.cart});
+    }
   }
 
   /**
@@ -200,6 +216,13 @@ export class ShopService {
   }
 
   /**
+   * Indicates whether to prevent the removal of a specific product from the cart.
+   */
+  disableRemoveFromCart(product: Product): boolean {
+    return (this.creditAfterPurchase() + product.price < this.getDebtLimit());
+  }
+
+  /**
    * Returns the shopping cart sum.
    */
   shoppingCartSum(): number {
@@ -228,5 +251,19 @@ export class ShopService {
     const difference = Math.abs(now.getTime() - productCreationDate.getTime());
     const productAgeInDays = Math.ceil(difference / (1000 * 3600 * 24));
     return productAgeInDays <= 7;
+  }
+
+  /**
+   * Sort function for the cart. All items have to be sorted by the sum price of the purchase in ascending order.
+   */
+  _cart_sort_fn(first: CartItem, second: CartItem): number {
+    const resultingPriceFirst = first.product.price * first.count;
+    const resultingPriceSecond = second.product.price * second.count;
+    if (resultingPriceFirst > resultingPriceSecond) {
+      return 1;
+    } else if (resultingPriceFirst < resultingPriceSecond) {
+      return -1;
+    }
+    return 0;
   }
 }
