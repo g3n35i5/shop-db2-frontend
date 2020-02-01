@@ -35,7 +35,8 @@
     "moment-timezone": "^0.5.26",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.3",
-    "screenfull": "^4.2.1"
+    "screenfull": "^4.2.1",
+    "serialize-javascript": "^2.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.801.3",
