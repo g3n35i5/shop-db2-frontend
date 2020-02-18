@@ -88,8 +88,8 @@ export class DataService {
     }));
   }
 
-  public getTags(): Observable<Tag[]> {
-    return this.getData('tags').pipe(map(result => {
+  public getTags(params?: HttpParams): Observable<Tag[]> {
+    return this.getData('tags', params).pipe(map(result => {
       return <Tag[]>result;
     }));
   }

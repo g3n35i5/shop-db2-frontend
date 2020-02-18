@@ -11,6 +11,7 @@ import {SettingsService} from '../settings/settings.service';
 import {Router} from '@angular/router';
 import {ShopState} from '../interfaces/shopstate';
 import {environment} from '../../environments/environment';
+import {HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -73,7 +74,9 @@ export class ShopService {
     const products = this.dataService.getProducts();
     const favorites = this.dataService.getFavorites(this.userID);
     const ranks = this.dataService.getRanks();
-    const tags = this.dataService.getTags();
+    // Filter params for tags
+    const tagParams = new HttpParams().set('filter', JSON.stringify({is_for_sale: true}))
+    const tags = this.dataService.getTags(tagParams);
     forkJoin([user, products, favorites, ranks, tags]).subscribe(results => {
       this.loaded = true;
       this.user = results[0];
