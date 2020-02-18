@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -70,9 +70,8 @@ export class DataService {
     }));
   }
 
-  public getPurchases(limit?: number): Observable<Purchase[]> {
-    const url = 'purchases' + (limit ? '?limit=' + limit.toString() : '');
-    return this.getData(url).pipe(map(result => {
+  public getPurchases(params?: HttpParams): Observable<Purchase[]> {
+    return this.getData('purchases', params).pipe(map(result => {
       return plainToClass(Purchase, <any[]>result);
     }));
   }
@@ -129,19 +128,19 @@ export class DataService {
     return this.http.get(this.apiURL);
   }
 
-  private getData(route) {
-    return this.makeRequest(route, null, 'GET');
+  private getData(route: string, params?: HttpParams) {
+    return this.makeRequest(route, null, 'GET', params);
   }
 
-  private postData(route, data) {
-    return this.makeRequest(route, data, 'POST');
+  private postData(route, data, params?: HttpParams) {
+    return this.makeRequest(route, data, 'POST', params);
   }
 
-  private putData(route, data) {
-    return this.makeRequest(route, data, 'PUT');
+  private putData(route, data, params?: HttpParams) {
+    return this.makeRequest(route, data, 'PUT', params);
   }
 
-  private makeRequest(route, data, type) {
+  private makeRequest(route: string, data: any, type: string, params?: HttpParams) {
     /**
      * Check if the backend is available. If this is not the case,
      * the HTTP_INTERCEPTOR will redirect you to the offline page
@@ -149,13 +148,20 @@ export class DataService {
      */
     this.http.get(this.apiURL);
 
+    /**
+     * URL parameters.
+     */
+    if (!params) {
+      params = new HttpParams();
+    }
+
     /** Switch case for the different request methods. */
     if (type === 'GET') {
-      return this.http.get(this.apiURL + route);
+      return this.http.get(this.apiURL + route, {params: params});
     } else if (type === 'POST') {
-      return this.http.post(this.apiURL + route, data);
+      return this.http.post(this.apiURL + route, data, {params: params});
     } else if (type === 'PUT') {
-      return this.http.put(this.apiURL + route, data);
+      return this.http.put(this.apiURL + route, data, {params: params});
     } else {
       console.log('DataService: Invalid request type: ' + type);
     }

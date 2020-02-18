@@ -8,6 +8,7 @@ import {forkJoin} from 'rxjs';
 import {Purchase} from '../classes/purchase';
 import {Product} from '../classes/product';
 import {User} from '../classes/user';
+import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-globalhistory',
@@ -49,8 +50,13 @@ export class GlobalhistoryComponent implements OnInit {
 
   /** Load all necessary data from the backend. */
   loadData() {
+    // Using HttpParams for querying the API
+    const params = new HttpParams()
+      .set('sort', JSON.stringify({field: 'timestamp', order: 'DESC'}))
+      .set('pagination', JSON.stringify({page: 1, perPage: this.maxPurchases}));
+
     const users = this.dataService.getUsers();
-    const purchases = this.dataService.getPurchases(this.maxPurchases);
+    const purchases = this.dataService.getPurchases(params);
     const products = this.dataService.getProducts();
     forkJoin([users, purchases, products]).subscribe(results => {
       this.users = results[0];
