@@ -5,6 +5,8 @@ import {User} from '../classes/user';
 import {Rank} from '../interfaces/rank';
 import {SortedUsers} from '../interfaces/sortedusers';
 import {forkJoin} from 'rxjs';
+import {Product} from '../classes/product';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-login',

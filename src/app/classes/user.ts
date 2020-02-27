@@ -1,6 +1,7 @@
 import {Transform, Type} from 'class-transformer';
 import * as moment from 'moment-timezone/builds/moment-timezone.min.js';
 import {Moment} from 'moment-timezone';
+import {environment} from '../../environments/environment';
 
 export class User {
   id: number;
@@ -9,6 +10,7 @@ export class User {
   credit: number;
   rank_id: number;
   is_admin: boolean;
+  imagename: string;
   @Type(() => Date)
   @Transform(value => moment(value), {toClassOnly: true})
   creation_date: Moment;
@@ -24,5 +26,10 @@ export class User {
       return this.lastname;
     }
     return [this.firstname, this.lastname].join(' ');
+  }
+
+  getImageURL(): string|undefined {
+    const path = environment.apiURL + 'images/';
+    return this.imagename !== null ? path + this.imagename : null;
   }
 }

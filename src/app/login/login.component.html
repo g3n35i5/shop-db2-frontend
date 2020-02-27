@@ -40,7 +40,8 @@
                  *ngFor="let user of group.users">
               <a mat-list-item [routerLink]="['/shop', user.id]"
                  class="userlink">
-                <mat-icon mat-list-icon>person</mat-icon>
+                <mat-icon class="userIcon" *ngIf="!user.imagename" mat-list-icon>person</mat-icon>
+                <img *ngIf="user.imagename" class="dark-bg" matListAvatar [src]="user.getImageURL()" [alt]="user.getUsername(sortByLastname)">
                 <h4 mat-line>
                   {{user.getUsername(sortByLastname)}}
                 </h4>

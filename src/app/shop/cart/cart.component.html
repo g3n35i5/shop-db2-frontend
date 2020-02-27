@@ -6,8 +6,9 @@
       <mat-card-header class="customheader cartbackground">
         <div class="container-outer">
           <div class="avatar">
-            <avatar class="avatar" [size]="80" [name]="getAvatarString()"
+            <avatar *ngIf="!user.imagename" class="avatar" [size]="80" [name]="getAvatarString()"
                     background="#212121" [displayType]="'circle'"></avatar>
+            <img *ngIf="user.imagename" class="avatar dark-bg" [src]="user.getImageURL()">
           </div>
           <div class="container-inner">
             <section class="username">
