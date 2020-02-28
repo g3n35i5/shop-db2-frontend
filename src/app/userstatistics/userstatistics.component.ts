@@ -12,7 +12,7 @@ import {CustomCurrency} from '../filters';
 import {User} from '../classes/user';
 import {Purchase} from '../classes/purchase';
 import {Deposit} from '../classes/deposit';
-import {Refund} from '../classes/refund';
+import {Replenishmentcollection} from '../classes/replenishmentcollection';
 import {Moment} from 'moment-timezone';
 import {colorSets} from '@swimlane/ngx-charts/release/utils';
 import {SortableArray, dynamicSort} from '../classes/arrays';
@@ -53,13 +53,13 @@ export class UserstatisticsComponent implements OnInit {
   private products: Product[];
   private purchases: Purchase[];
   private deposits: Deposit[];
-  private refunds: Refund[];
+  private replenishmentcollections: Replenishmentcollection[];
   private sortedPurchases: Purchase[];
   private sortedDeposits: Deposit[];
-  private sortedRefunds: Refund[];
+  private sortedReplenishmentcollections: Replenishmentcollection[];
   private filteredPurchases: Purchase[];
   private filteredDeposits: Deposit[];
-  private filteredRefunds: Refund[];
+  private filteredReplenishmentcollections: Replenishmentcollection[];
   private numFavoritesToShow = 10;
   private favorites: number[];
 
@@ -154,15 +154,15 @@ export class UserstatisticsComponent implements OnInit {
     const favorites = this.dataService.getFavorites(this.userID);
     const purchases = this.dataService.getUserPurchases(this.userID);
     const deposits = this.dataService.getUserDeposits(this.userID);
-    const refunds = this.dataService.getUserRefunds(this.userID);
+    const replenishmentcollections = this.dataService.getUserReplenishmentcollections(this.userID);
 
-    forkJoin([user, products, favorites, purchases, deposits, refunds]).subscribe(results => {
+    forkJoin([user, products, favorites, purchases, deposits, replenishmentcollections]).subscribe(results => {
       this.user = results[0];
       this.products = results[1];
       this.favorites = results[2];
       this.purchases = results[3];
       this.deposits = results[4];
-      this.refunds = results[5];
+      this.replenishmentcollections = results[5];
 
       // Get the date of the first purchase.
       if (this.purchases.length > 1) {
@@ -180,16 +180,16 @@ export class UserstatisticsComponent implements OnInit {
       }
       const dateOfFirstDeposit = this.sortedDeposits.length > 0 ? this.sortedDeposits[0].timestamp : null;
 
-      // Get the date of the first refund.
-      if (this.refunds.length > 1) {
-        this.sortedRefunds = this.refunds.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
+      // Get the date of the first replenishmentcollection.
+      if (this.replenishmentcollections.length > 1) {
+        this.sortedReplenishmentcollections = this.replenishmentcollections.sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp));
       } else {
-        this.sortedRefunds = this.refunds;
+        this.sortedReplenishmentcollections = this.replenishmentcollections;
       }
-      const dateOfFirstRefund = this.sortedRefunds.length > 0 ? this.sortedRefunds[0].timestamp : null;
+      const dateOfFirstReplenishmentcollection = this.sortedReplenishmentcollections.length > 0 ? this.sortedReplenishmentcollections[0].timestamp : null;
 
       // Sort the dates
-      const allDates = [dateOfFirstPurchase, dateOfFirstDeposit, dateOfFirstRefund].filter(item => item !== null);
+      const allDates = [dateOfFirstPurchase, dateOfFirstDeposit, dateOfFirstReplenishmentcollection].filter(item => item !== null);
 
       // We can only generate statistics, if there is any data...
       if (allDates.length > 0) {
@@ -229,12 +229,12 @@ export class UserstatisticsComponent implements OnInit {
     this.filteredDeposits = this.sortedDeposits
       .filter(deposit => moment(deposit.timestamp).isBetween(startValue, endValue, null, '[]'));
 
-    // Filter refunds
-    this.sortedRefunds = this.refunds
+    // Filter replenishmentcollections
+    this.sortedReplenishmentcollections = this.replenishmentcollections
       .sort((a, b) => _dateCompareFn(a.timestamp, b.timestamp))
-      .filter(refund => !refund.revoked);
-    this.filteredRefunds = this.sortedRefunds
-      .filter(refund => moment(refund.timestamp).isBetween(startValue, endValue, null, '[]'));
+      .filter(replenishmentcollection => !replenishmentcollection.revoked);
+    this.filteredReplenishmentcollections = this.sortedReplenishmentcollections
+      .filter(replenishmentcollection => moment(replenishmentcollection.timestamp).isBetween(startValue, endValue, null, '[]'));
 
 
     // Array that contains all dates between the two datepicker values
@@ -351,13 +351,13 @@ export class UserstatisticsComponent implements OnInit {
 
     let purchaseIndex = 0;
     let depositIndex = 0;
-    let refundIndex = 0;
+    let replenishmentcollectionIndex = 0;
 
     for (const date = moment(this.globalMinDate); date <= moment(); date.add(1, 'days')) {
       while (true) {
         let continuePurchases = true;
         let continueDeposits = true;
-        let continueRefunds = true;
+        let continueReplenishmentcollections = true;
 
         // Handle purchases
         if (purchaseIndex < this.sortedPurchases.length) {
@@ -385,20 +385,20 @@ export class UserstatisticsComponent implements OnInit {
           continueDeposits = false;
         }
 
-        // Handle refunds
-        if (refundIndex < this.sortedRefunds.length) {
-          const currentRefund = this.sortedRefunds[refundIndex];
-          if (currentRefund.timestamp <= date) {
-            current_credit += currentRefund.total_price;
-            refundIndex++;
+        // Handle replenishmentcollections
+        if (replenishmentcollectionIndex < this.sortedReplenishmentcollections.length) {
+          const currentReplenishmentcollection = this.sortedReplenishmentcollections[replenishmentcollectionIndex];
+          if (currentReplenishmentcollection.timestamp <= date) {
+            current_credit += currentReplenishmentcollection.price;
+            replenishmentcollectionIndex++;
           } else {
-            continueRefunds = false;
+            continueReplenishmentcollections = false;
           }
         } else {
-          continueRefunds = false;
+          continueReplenishmentcollections = false;
         }
 
-        if (!continuePurchases && !continueDeposits && !continueRefunds) {
+        if (!continuePurchases && !continueDeposits && !continueReplenishmentcollections) {
           break;
         }
       }

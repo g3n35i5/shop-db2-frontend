@@ -5,7 +5,7 @@
                    showFirstLastButtons></mat-paginator>
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)"
-             placeholder="Search in refunds">
+             placeholder="Search in replenishmentcollcetions">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort matSortActive="id"
@@ -14,36 +14,36 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> #</th>
-        <td mat-cell *matCellDef="let refund"> {{refund.id}}</td>
+        <td mat-cell *matCellDef="let replenishmentcollcetion"> {{replenishmentcollcetion.id}}</td>
       </ng-container>
 
       <!-- Timestamp Column -->
       <ng-container matColumnDef="timestamp">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Timestamp</th>
-        <td mat-cell *matCellDef="let refund">
-          {{refund.timestamp | customTimestamp }}</td>
+        <td mat-cell *matCellDef="let replenishmentcollcetion">
+          {{replenishmentcollcetion.timestamp | customTimestamp }}</td>
       </ng-container>
 
-      <!-- Amount Column -->
-      <ng-container matColumnDef="total_price">
-        <th mat-header-cell *matHeaderCellDef> Amount</th>
-        <td mat-cell *matCellDef="let refund">
-          {{refund.total_price | customCurrency | currency: 'EUR'}}
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let replenishmentcollcetion">
+          {{replenishmentcollcetion.price | customCurrency | currency: 'EUR'}}
         </td>
       </ng-container>
 
       <!-- Admin Column -->
       <ng-container matColumnDef="admin">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin</th>
-        <td mat-cell *matCellDef="let refund">
-          {{ refund.admin.getUsername() }}
+        <td mat-cell *matCellDef="let replenishmentcollcetion">
+          {{ replenishmentcollcetion.admin.getUsername() }}
         </td>
       </ng-container>
 
       <!-- Comment Column -->
       <ng-container matColumnDef="comment">
         <th mat-header-cell *matHeaderCellDef> Comment</th>
-        <td mat-cell *matCellDef="let refund"> {{refund.comment}}</td>
+        <td mat-cell *matCellDef="let replenishmentcollcetion"> {{replenishmentcollcetion.comment}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -52,7 +52,7 @@
   </div>
   <div *ngIf="!showTable">
     <div class="center-card center-text">
-      <h1 class="mat-h1">There are no refunds yet.</h1>
+      <h1 class="mat-h1">There are no replenishmentcollcetions yet.</h1>
     </div>
   </div>
 </div>

@@ -5,14 +5,14 @@ import {MatTableDataSource} from '@angular/material/table';
 import {DataService} from '../../services/data.service';
 import {forkJoin} from 'rxjs';
 import {User} from '../../classes/user';
-import {Refund} from '../../classes/refund';
+import {Replenishmentcollection} from '../../classes/replenishmentcollection';
 
 @Component({
-  selector: 'app-refunds',
-  templateUrl: './refunds.component.html',
-  styleUrls: ['./refunds.component.scss']
+  selector: 'app-replenishmentcollcetions',
+  templateUrl: './replenishmentcollections.component.html',
+  styleUrls: ['./replenishmentcollections.component.scss']
 })
-export class RefundsComponent implements OnInit {
+export class ReplenishmentcollectionsComponent implements OnInit {
 
   @Input() user: User;
 
@@ -20,12 +20,12 @@ export class RefundsComponent implements OnInit {
   public loading: boolean;
   public disableInteraction: boolean;
   public showTable: boolean;
-  public refunds: Refund[];
+  public replenishmentcollcetions: Replenishmentcollection[];
   private users: User[];
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
-  displayedColumns: string[] = ['id', 'total_price', 'admin', 'comment', 'timestamp'];
+  displayedColumns: string[] = ['id', 'timestamp', 'admin', 'comment', 'price'];
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
@@ -41,10 +41,10 @@ export class RefundsComponent implements OnInit {
 
   /** Load all necessary data from the backend. */
   loadData() {
-    const refunds = this.dataService.getUserRefunds(this.user.id);
+    const replenishmentcollcetions = this.dataService.getUserReplenishmentcollections(this.user.id);
     const users = this.dataService.getUsers();
-    forkJoin([refunds, users]).subscribe(results => {
-      this.refunds = results[0];
+    forkJoin([replenishmentcollcetions, users]).subscribe(results => {
+      this.replenishmentcollcetions = results[0];
       this.users = results[1];
       this.processingData();
     });
@@ -53,13 +53,13 @@ export class RefundsComponent implements OnInit {
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     const that = this;
-    if (this.refunds.length > 0) {
-      this.dataSource = new MatTableDataSource(this.refunds);
+    if (this.replenishmentcollcetions.length > 0) {
+      this.dataSource = new MatTableDataSource(this.replenishmentcollcetions);
       this.dataSource.filterPredicate = function (data, filter: string): boolean {
         return data.admin.getUsername().toLowerCase().includes(filter) || data.comment.toLowerCase().includes(filter);
       };
-      for (const deposit of this.refunds) {
-        deposit.admin = this.users.find(u => u.id === deposit.admin_id);
+      for (const replenishmentcollection of this.replenishmentcollcetions) {
+        replenishmentcollection.admin = this.users.find(u => u.id === replenishmentcollection.admin_id);
       }
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);

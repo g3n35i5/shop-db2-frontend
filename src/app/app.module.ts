@@ -26,7 +26,7 @@ import {FavoriteItemComponent} from './shop/products/favorite-item/favorite-item
 import {UserhistoryComponent} from './userhistory/userhistory.component';
 import {DepositsComponent} from './userhistory/deposits/deposits.component';
 import {PurchasesComponent} from './userhistory/purchases/purchases.component';
-import {RefundsComponent} from './userhistory/refunds/refunds.component';
+import {ReplenishmentcollectionsComponent} from './userhistory/replenishmentcollections/replenishmentcollections.component';
 import {CreditwarningComponent} from './shop/dialogs/creditwarning/creditwarning.component';
 import {GlobalhistoryComponent} from './globalhistory/globalhistory.component';
 import {RegisterComponent} from './register/register.component';
@@ -51,7 +51,7 @@ import {ChartComponent} from './userstatistics/chart/chart.component';
     UserhistoryComponent,
     DepositsComponent,
     PurchasesComponent,
-    RefundsComponent,
+    ReplenishmentcollectionsComponent,
     CreditwarningComponent,
     GlobalhistoryComponent,
     RegisterComponent,

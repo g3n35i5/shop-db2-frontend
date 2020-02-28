@@ -7,7 +7,7 @@ import {Rank} from '../interfaces/rank';
 import {Tag} from '../interfaces/tag';
 import {User} from '../classes/user';
 import {Deposit} from '../classes/deposit';
-import {Refund} from '../classes/refund';
+import {Replenishmentcollection} from '../classes/replenishmentcollection';
 import {Purchase} from '../classes/purchase';
 import {Product} from '../classes/product';
 import {environment} from '../../environments/environment';
@@ -106,9 +106,9 @@ export class DataService {
     }));
   }
 
-  public getUserRefunds(id: number): Observable<Refund[]> {
-    return this.getData('users/' + String(id) + '/refunds').pipe(map((result: any) => {
-      return plainToClass(Refund, <any[]>result);
+  public getUserReplenishmentcollections(id: number): Observable<Replenishmentcollection[]> {
+    return this.getData('users/' + String(id) + '/replenishmentcollections').pipe(map((result: any) => {
+      return plainToClass(Replenishmentcollection, <any[]>result);
     }));
   }
 
