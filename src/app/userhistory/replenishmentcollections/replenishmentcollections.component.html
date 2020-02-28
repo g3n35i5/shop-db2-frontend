@@ -5,7 +5,7 @@
                    showFirstLastButtons></mat-paginator>
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)"
-             placeholder="Search in replenishmentcollcetions">
+             placeholder="Search in replenishmentcollections">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort matSortActive="id"
@@ -52,7 +52,7 @@
   </div>
   <div *ngIf="!showTable">
     <div class="center-card center-text">
-      <h1 class="mat-h1">There are no replenishmentcollcetions yet.</h1>
+      <h1 class="mat-h1">There are no replenishmentcollections yet.</h1>
     </div>
   </div>
 </div>

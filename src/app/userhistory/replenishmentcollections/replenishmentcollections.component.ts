@@ -8,7 +8,7 @@ import {User} from '../../classes/user';
 import {Replenishmentcollection} from '../../classes/replenishmentcollection';
 
 @Component({
-  selector: 'app-replenishmentcollcetions',
+  selector: 'app-replenishmentcollections',
   templateUrl: './replenishmentcollections.component.html',
   styleUrls: ['./replenishmentcollections.component.scss']
 })
@@ -20,7 +20,7 @@ export class ReplenishmentcollectionsComponent implements OnInit {
   public loading: boolean;
   public disableInteraction: boolean;
   public showTable: boolean;
-  public replenishmentcollcetions: Replenishmentcollection[];
+  public replenishmentcollections: Replenishmentcollection[];
   private users: User[];
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
@@ -41,10 +41,10 @@ export class ReplenishmentcollectionsComponent implements OnInit {
 
   /** Load all necessary data from the backend. */
   loadData() {
-    const replenishmentcollcetions = this.dataService.getUserReplenishmentcollections(this.user.id);
+    const replenishmentcollections = this.dataService.getUserReplenishmentcollections(this.user.id);
     const users = this.dataService.getUsers();
-    forkJoin([replenishmentcollcetions, users]).subscribe(results => {
-      this.replenishmentcollcetions = results[0];
+    forkJoin([replenishmentcollections, users]).subscribe(results => {
+      this.replenishmentcollections = results[0];
       this.users = results[1];
       this.processingData();
     });
@@ -53,12 +53,12 @@ export class ReplenishmentcollectionsComponent implements OnInit {
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     const that = this;
-    if (this.replenishmentcollcetions.length > 0) {
-      this.dataSource = new MatTableDataSource(this.replenishmentcollcetions);
+    if (this.replenishmentcollections.length > 0) {
+      this.dataSource = new MatTableDataSource(this.replenishmentcollections);
       this.dataSource.filterPredicate = function (data, filter: string): boolean {
         return data.admin.getUsername().toLowerCase().includes(filter) || data.comment.toLowerCase().includes(filter);
       };
-      for (const replenishmentcollection of this.replenishmentcollcetions) {
+      for (const replenishmentcollection of this.replenishmentcollections) {
         replenishmentcollection.admin = this.users.find(u => u.id === replenishmentcollection.admin_id);
       }
       setTimeout(() => this.dataSource.paginator = this.paginator);
