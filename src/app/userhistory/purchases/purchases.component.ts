@@ -42,6 +42,11 @@ export class PurchasesComponent implements OnInit {
     this.loadData();
   }
 
+  /** Disable revoke. **/
+  disableRevoke(purchase: Purchase): boolean {
+    return this.disableInteraction || purchase.admin_id !== null;
+  }
+
   /** Revoke a purchase. **/
   toggleRevoke(purchase) {
     this.disableInteraction = true;

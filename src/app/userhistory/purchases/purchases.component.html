@@ -60,7 +60,7 @@
           <button mat-icon-button
                   [color]="purchase.revoked ? 'accent' : 'primary'"
                   (click)="toggleRevoke(purchase)"
-                  [disabled]="disableInteraction">
+                  [disabled]="disableRevoke(purchase)">
             {{ purchase.revoked ? 'Undo revoke' : 'Revoke' }}
           </button>
         </td>
