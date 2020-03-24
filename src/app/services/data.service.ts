@@ -120,8 +120,8 @@ export class DataService {
     return this.postData('purchases', data);
   }
 
-  public registerUser(data: any) {
-    return this.postData('register', data);
+  public createUser(data: any) {
+    return this.postData('users', data);
   }
 
   public backendOnline() {

@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
         }
       }
     }
-    this.dataService.registerUser(data).subscribe(() => {
+    this.dataService.createUser(data).subscribe(() => {
       this.snackbar.openSnackBar('The registration was successful. ' +
         'Please wait until your account has been activated by an w' +
         'administrator.');
